@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opciones de Envío - LEVEL-UP GAMER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Estilos premium para opciones de envío con tema oscuro */
+        .shipping-container {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .shipping-header {
+            color: #00ff88;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .shipping-option {
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .shipping-option label {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin: 0;
+        }
+
+        .shipping-option label:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .shipping-option input[type="radio"] {
+            display: none;
+        }
+
+        .shipping-option input[type="radio"]:checked + label {
+            border-color: #00ff88;
+            background: rgba(0, 255, 136, 0.1);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+        }
+
+        .shipping-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(0, 255, 136, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .shipping-icon i {
+            font-size: 1.5rem;
+            color: #00ff88;
+        }
+
+        .shipping-content {
+            flex: 1;
+            color: #ffffff;
+        }
+
+        .shipping-method-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .shipping-delivery-time {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        .shipping-cost {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #00ff88;
+            margin-left: 1rem;
+        }
+
+        .shipping-cost.free {
+            color: #ffd700;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-back {
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            border-color: #ffffff;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-continue {
+            background: linear-gradient(45deg, #00ff88, #00cc6a);
+            border: none;
+            color: #000000;
+            padding: 0.75rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-continue:hover {
+            background: linear-gradient(45deg, #00cc6a, #00ff88);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 255, 136, 0.3);
+            color: #000000;
+        }
+    </style>
+</head>
+<body class="cart-page">
+    <!-- Agregando partículas flotantes para coherencia con carrito -->
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <!-- Contenedor principal unificado con diseño premium -->
+                <div class="shipping-container">
+                    <h4 class="shipping-header">
+                        <i class="bi bi-truck me-2"></i>
+                        Selecciona tu método de envío
+                    </h4>
+                    
+                    <div class="shipping-options">
+                        <!-- Opción 1: Starken con diseño clickeable completo -->
+                        <div class="shipping-option">
+                            <input type="radio" name="shipping" id="starken" value="starken">
+                            <label for="starken">
+                                <div class="shipping-icon">
+                                    <i class="bi bi-truck"></i>
+                                </div>
+                                <div class="shipping-content">
+                                    <div class="shipping-method-name">Starken - Domicilio</div>
+                                    <div class="shipping-delivery-time">Entrega en 2-3 días hábiles</div>
+                                </div>
+                                <div class="shipping-cost">$3.500</div>
+                            </label>
+                        </div>
+
+                        <!-- Opción 2: Chilexpress con ícono express -->
+                        <div class="shipping-option">
+                            <input type="radio" name="shipping" id="chilexpress" value="chilexpress">
+                            <label for="chilexpress">
+                                <div class="shipping-icon">
+                                    <i class="bi bi-lightning-charge"></i>
+                                </div>
+                                <div class="shipping-content">
+                                    <div class="shipping-method-name">Chilexpress - Express</div>
+                                    <div class="shipping-delivery-time">Entrega en 1-2 días hábiles</div>
+                                </div>
+                                <div class="shipping-cost">$4.990</div>
+                            </label>
+                        </div>
+
+                        <!-- Opción 3: Retiro en tienda con ícono de tienda -->
+                        <div class="shipping-option">
+                            <input type="radio" name="shipping" id="pickup" value="pickup" checked>
+                            <label for="pickup">
+                                <div class="shipping-icon">
+                                    <i class="bi bi-shop"></i>
+                                </div>
+                                <div class="shipping-content">
+                                    <div class="shipping-method-name">Retiro en Tienda</div>
+                                    <div class="shipping-delivery-time">Disponible inmediatamente</div>
+                                </div>
+                                <div class="shipping-cost free">Gratis</div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Botones de acción agrupados al final -->
+                    <div class="action-buttons">
+                        <button type="button" class="btn btn-back" onclick="history.back()">
+                            <i class="bi bi-arrow-left me-2"></i>Volver
+                        </button>
+                        <button type="button" class="btn btn-continue" onclick="continueToPayment()">
+                            Continuar al pago
+                            <i class="bi bi-arrow-right ms-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let cart = [];
+        let shippingCosts = {
+            starken: 3500,
+            chilexpress: 4990,
+            pickup: 0
+        };
+
+        // Cargar carrito y calcular totales
+        function loadCartAndUpdateShipping() {
+            const possibleKeys = ['levelup_cart', 'carrito', 'cart'];
+            let cartLoaded = false;
+
+            for (const key of possibleKeys) {
+                const savedCart = localStorage.getItem(key);
+                if (savedCart) {
+                    try {
+                        const parsedCart = JSON.parse(savedCart);
+                        if (Array.isArray(parsedCart) && parsedCart.length > 0) {
+                            cart = parsedCart;
+                            cartLoaded = true;
+                            break;
+                        }
+                    } catch (error) {
+                        console.error(`Error al parsear carrito desde ${key}:`, error);
+                    }
+                }
+            }
+
+            if (!cartLoaded) {
+                console.log('No hay carrito guardado');
+                cart = [];
+            }
+
+            updateShippingCosts();
+        }
+
+        // Actualizar costos de envío basados en el total del carrito
+        function updateShippingCosts() {
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            // Si el total es mayor a $50.000, Starken es gratis
+            if (total > 50000) {
+                shippingCosts.starken = 0;
+                document.querySelector('#starken').parentElement.querySelector('.shipping-cost').textContent = 'Gratis';
+                document.querySelector('#starken').parentElement.querySelector('.shipping-cost').classList.add('free');
+            } else {
+                shippingCosts.starken = 3500;
+                document.querySelector('#starken').parentElement.querySelector('.shipping-cost').textContent = '$3.500';
+                document.querySelector('#starken').parentElement.querySelector('.shipping-cost').classList.remove('free');
+            }
+
+            // Chilexpress siempre mantiene su precio
+            document.querySelector('#chilexpress').parentElement.querySelector('.shipping-cost').textContent = '$4.990';
+            document.querySelector('#chilexpress').parentElement.querySelector('.shipping-cost').classList.remove('free');
+
+            console.log('Total del carrito:', total, 'Starken gratis:', total > 50000);
+        }
+
+        function continueToPayment() {
+            const selectedShipping = document.querySelector('input[name="shipping"]:checked');
+            if (selectedShipping) {
+                // Guardar opción seleccionada y costo en localStorage
+                const shippingCost = shippingCosts[selectedShipping.value];
+                localStorage.setItem('selectedShipping', selectedShipping.value);
+                localStorage.setItem('selectedShippingCost', shippingCost);
+                // Redirigir al siguiente paso del checkout
+                window.location.href = 'checkout.html';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCartAndUpdateShipping();
+        });
+
+        document.querySelectorAll('.shipping-option label').forEach(label => {
+            label.addEventListener('click', function() {
+                // Remover selección previa
+                document.querySelectorAll('.shipping-option label').forEach(l => {
+                    l.style.transform = 'translateY(0)';
+                });
+                // Animar selección actual
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-2px)';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

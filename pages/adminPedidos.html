@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pedidos - LevelUp Gaming</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/admin.css" rel="stylesheet">
+</head>
+<body class="admin-body admin-pedidos">
+    <!-- Header copiado de adminUsuarios.html con breadcrumb actualizado -->
+    <header class="admin-header">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <!-- Botón hamburguesa para móviles -->
+                    <button class="btn btn-outline-light d-md-none me-3" id="toggleSidebar" aria-label="Alternar sidebar">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div>
+                        <h4 class="mb-0 text-white">Panel de Administración</h4>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="admin.html" class="text-light">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Pedidos</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light position-relative" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationCount">
+                                0
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end notification-dropdown">
+                            <li><h6 class="dropdown-header">Notificaciones</h6></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-cart-check text-success"></i> Nuevos pedidos recibidos</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center" href="#">Ver todas</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i>
+                            <span>Administrador</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Mi Perfil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Configuración</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../index.html"><i class="bi bi-house"></i> Volver al sitio</a></li>
+                            <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Sidebar copiado de adminUsuarios.html con enlace activo en Pedidos -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-brand">
+                <i class="bi bi-controller"></i>
+                <span>LevelUp Admin</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <span class="nav-section-title">Principal</span>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin.html">
+                                <i class="bi bi-speedometer2"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">Gestión</span>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminProductos.html">
+                                <i class="bi bi-box-seam"></i>
+                                <span>Productos</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminUsuarios.html">
+                                <i class="bi bi-people"></i>
+                                <span>Usuarios</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminPuntos.html">
+                                <i class="bi bi-star"></i>
+                                <span>Puntos</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="adminPedidos.html">
+                                <i class="bi bi-cart-check"></i>
+                                <span>Pedidos</span>
+                                <div class="nav-indicator"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- agregando sección de contenido con Eventos -->
+                <div class="nav-section">
+                    <span class="nav-section-title">Contenido</span>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../blogNoticias.html">
+                                <i class="bi bi-newspaper"></i>
+                                <span>Blog</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../blogNoticias.html">
+                                <i class="bi bi-calendar-event"></i>
+                                <span>Eventos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main content adaptado para gestión de pedidos -->
+        <main class="admin-main">
+            <section class="admin-section active">
+                <div class="section-header">
+                    <div>
+                        <h3><i class="bi bi-cart-check"></i> Gestión de Pedidos</h3>
+                        <p class="text-muted">Administra pedidos y órdenes de compra - Última actualización: <span id="lastUpdate">--</span></p>
+                    </div>
+                    <div class="section-actions">
+                        <button class="btn btn-outline-primary btn-sm" id="refreshOrders">
+                            <i class="bi bi-arrow-clockwise"></i> Actualizar
+                        </button>
+                        <button class="btn btn-success btn-sm" id="exportOrders">
+                            <i class="bi bi-download"></i> Exportar
+                        </button>
+                    </div>
+                </div>
+
+                <!-- KPI cards específicas para pedidos -->
+                <div class="row g-4 mb-4">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="kpi-card kpi-primary">
+                            <div class="kpi-icon">
+                                <i class="bi bi-cart-check"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value" id="totalOrders">0</div>
+                                <div class="kpi-label">Total Pedidos</div>
+                                <div class="kpi-trend">
+                                    <i class="bi bi-arrow-up"></i>
+                                    <span>Pedidos registrados</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6">
+                        <div class="kpi-card kpi-warning">
+                            <div class="kpi-icon">
+                                <i class="bi bi-clock-history"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value" id="pendingOrders">0</div>
+                                <div class="kpi-label">Pendientes</div>
+                                <div class="kpi-trend">
+                                    <i class="bi bi-clock"></i>
+                                    <span>Por procesar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6">
+                        <div class="kpi-card kpi-success">
+                            <div class="kpi-icon">
+                                <i class="bi bi-check-circle"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value" id="completedOrders">0</div>
+                                <div class="kpi-label">Completados</div>
+                                <div class="kpi-trend">
+                                    <i class="bi bi-check"></i>
+                                    <span>Entregados</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6">
+                        <div class="kpi-card kpi-info">
+                            <div class="kpi-icon">
+                                <i class="bi bi-currency-dollar"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value" id="totalRevenue">$0</div>
+                                <div class="kpi-label">Ingresos Totales</div>
+                                <div class="kpi-trend">
+                                    <i class="bi bi-graph-up"></i>
+                                    <span>Ventas acumuladas</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabla de pedidos adaptada de adminUsuarios.html -->
+                <div class="dashboard-widget" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+                    <div class="widget-header" style="background: rgba(255,255,255,0.1); color: white; padding: 1rem; border-radius: 12px 12px 0 0; backdrop-filter: blur(10px);">
+                        <h6 style="color: white; margin: 0;"><i class="bi bi-table"></i> Lista de Pedidos</h6>
+                        <div class="widget-actions d-flex gap-2">
+                            <!-- Mejorando el filtro de estados con valor "all" por defecto -->
+                            <select class="form-select form-select-sm" id="statusFilter" style="width: auto; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.3); color: #333;">
+                                <option value="all">Todos los estados</option>
+                                <option value="pendiente">Pendiente</option>
+                                <option value="procesando">Procesando</option>
+                                <option value="enviado">Enviado</option>
+                                <option value="entregado">Entregado</option>
+                                <option value="cancelado">Cancelado</option>
+                            </select>
+                            <input type="text" class="form-control form-control-sm" id="searchOrders" 
+                                   placeholder="Buscar pedidos..." style="width: 200px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.3); color: #333;">
+                        </div>
+                    </div>
+                    <div class="widget-body" style="background: rgba(255,255,255,0.95); padding: 1rem; border-radius: 0 0 12px 12px;">
+                        <!-- Agregando versión de tabla para desktop -->
+                        <div class="table-responsive d-none d-md-block">
+                            <table class="table table-hover table-sm mb-0 orders-table">
+                                <thead class="table-header-gradient">
+                                    <tr>
+                                        <th class="text-center" style="width: 80px;">ID Pedido</th>
+                                        <th class="text-center" style="width: 120px;">Cliente</th>
+                                        <th class="text-center d-none d-lg-table-cell" style="width: 150px;">Email</th>
+                                        <th class="text-center" style="width: 100px;">Total</th>
+                                        <th class="text-center d-none d-md-table-cell" style="width: 120px;">Fecha</th>
+                                        <th class="text-center" style="width: 100px;">Estado</th>
+                                        <th class="text-center" style="width: 120px;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ordersTableBody">
+                                    <tr id="loadingRow">
+                                        <td colspan="7" class="text-center py-5">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <div class="spinner-border text-primary mb-3" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
+                                                </div>
+                                                <h6 class="text-primary mb-2">Cargando pedidos...</h6>
+                                                <p class="text-muted small mb-3">Por favor espere mientras se cargan los pedidos</p>
+                                                <div class="progress" style="width: 200px; height: 4px;">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                                         role="progressbar" style="width: 100%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Agregando versión de tarjetas para móviles -->
+                        <div class="d-block d-md-none" id="mobileOrdersContainer">
+                            <div id="mobileOrdersCards">
+                                <!-- Las tarjetas se generarán dinámicamente aquí -->
+                            </div>
+                            <div id="mobileLoadingState" class="text-center py-5">
+                                <div class="d-flex flex-column align-items-center">
+                                    <div class="spinner-border text-primary mb-3" role="status">
+                                        <span class="visually-hidden">Cargando...</span>
+                                    </div>
+                                    <h6 class="text-primary mb-2">Cargando pedidos...</h6>
+                                    <p class="text-muted small mb-3">Por favor espere mientras se cargan los pedidos</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="emptyState" class="d-none text-center py-5">
+                            <div class="empty-state">
+                                <i class="bi bi-cart-x text-muted" style="font-size: 4rem;"></i>
+                                <h5 class="text-muted mt-3">No hay pedidos para mostrar</h5>
+                                <p class="text-muted">No se encontraron pedidos que coincidan con los filtros aplicados.</p>
+                                <button class="btn btn-primary" id="clearFilters">
+                                    <i class="bi bi-funnel"></i> Limpiar filtros
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="text-muted small">
+                                Showing <span id="showingStart">1</span> to <span id="showingEnd">0</span> of <span id="totalEntries">0</span> entries
+                            </div>
+                            <nav>
+                                <ul class="pagination pagination-sm mb-0">
+                                    <li class="page-item">
+                                        <button class="page-link" id="prevPage">Previous</button>
+                                    </li>
+                                    <li class="page-item active">
+                                        <button class="page-link" id="currentPage">1</button>
+                                    </li>
+                                    <li class="page-item">
+                                        <button class="page-link" id="nextPage">Next</button>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para ver detalles del pedido -->
+    <div class="modal fade" id="orderDetailModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-gradient-primary text-white border-0">
+                    <h6 class="modal-title d-flex align-items-center" id="orderModalTitle">
+                        <i class="bi bi-cart-check me-2"></i> Detalles del Pedido
+                    </h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card border-0 bg-light h-100">
+                                <div class="card-body p-4">
+                                    <small class="card-title text-primary mb-3 fw-semibold d-block">
+                                        <i class="bi bi-person me-2"></i>Información del Cliente
+                                    </small>
+                                    <div id="customerInfo">
+                                        <!-- Se llenará dinámicamente -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card border-0 bg-light h-100">
+                                <div class="card-body p-4">
+                                    <small class="card-title text-success mb-3 fw-semibold d-block">
+                                        <i class="bi bi-info-circle me-2"></i>Información del Pedido
+                                    </small>
+                                    <div id="orderInfo">
+                                        <!-- Se llenará dinámicamente -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-4 mt-2">
+                        <div class="col-12">
+                            <div class="card border-0 bg-light">
+                                <div class="card-body p-4">
+                                    <small class="card-title text-warning mb-3 fw-semibold d-block">
+                                        <i class="bi bi-cart me-2"></i>Productos del Pedido
+                                    </small>
+                                    <div class="table-responsive">
+                                        <table class="table table-sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Producto</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Precio Unit.</th>
+                                                    <th>Subtotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="orderProducts">
+                                                <!-- Se llenará dinámicamente -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 bg-light p-4">
+                    <div class="d-flex gap-2">
+                        <select class="form-select" id="orderStatus" style="width: auto;">
+                            <option value="pendiente">Pendiente</option>
+                            <option value="procesando">Procesando</option>
+                            <option value="enviado">Enviado</option>
+                            <option value="entregado">Entregado</option>
+                            <option value="cancelado">Cancelado</option>
+                        </select>
+                        <button type="button" class="btn btn-primary" id="updateOrderStatus">
+                            <i class="bi bi-check-circle me-1"></i>Actualizar Estado
+                        </button>
+                    </div>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/adminPedidos.js"></script>
+</body>
+</html>

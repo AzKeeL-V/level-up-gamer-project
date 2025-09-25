@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - LEVEL-UP GAMER</title>
+    
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../css/style.css" rel="stylesheet">
+    
+    <!-- Agregando estilos específicos para el nuevo diseño del catálogo -->
+
+</head>
+
+<body class="catalog-page">
+    <div class="floating-particles">
+        <div class="stars"></div>
+    </div>
+    
+    <!--Navbar idéntico al index.html -->
+    <nav class="navbar navbar-expand-lg navbar-custom fixed-top" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <!-- Cambiando icono de Bootstrap por imagen del hero -->
+                <img src="../img/setup-inicio.jpg" alt="Level Up Gamer" class="navbar-brand-icon me-2">
+                LEVEL-UP GAMER
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="bi bi-list text-white fs-4"></i>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">
+                            <i class="bi bi-house-fill me-1"></i>Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="catalogo.html">
+                            <i class="bi bi-grid-3x3-gap me-1"></i>Catálogo
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blogNoticias.html">
+                            <i class="bi bi-newspaper me-1"></i>Blog
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contacto.html">
+                            <i class="bi bi-envelope me-1"></i>Contacto
+                        </a>
+                    </li>
+                </ul>
+                
+                <div class="d-flex align-items-center gap-3">
+                    <!-- Agregando link al carrito antes del menú de usuario -->
+                    <a href="carrito.html" class="btn btn-outline-primary btn-sm position-relative">
+                        <i class="bi bi-cart3 me-1"></i>Carrito
+                        <span id="cartBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success d-none">
+                            0
+                        </span>
+                    </a>
+                    
+                    <!-- Menú de usuario mejorado que se muestra cuando está logueado -->
+                    <div id="authButtons" class="d-flex gap-2">
+                        <a href="login.html" class="btn btn-outline-light btn-sm">
+                            <i class="bi bi-box-arrow-in-right me-1"></i>Iniciar Sesión
+                        </a>
+                        <a href="registro.html" class="btn btn-success btn-sm">
+                            <i class="bi bi-person-plus me-1"></i>Registrarse
+                        </a>
+                    </div>
+                    
+                    <div id="userMenu" class="d-none">
+                        <div class="dropdown">
+                            <button class="btn btn-outline-primary dropdown-toggle d-flex align-items-center gap-2" 
+                                    type="button" data-bs-toggle="dropdown">
+                                <div class="user-avatar">
+                                    <i class="bi bi-person-fill"></i>
+                                </div>
+                                <span id="userName" class="d-none d-md-inline"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end user-dropdown-menu">
+                                <!-- Nueva cabecera del dropdown con información del usuario -->
+                                <li class="user-info-header">
+                                    <div class="d-flex align-items-center gap-3 p-3">
+                                        <div class="user-avatar-large">
+                                            <i class="bi bi-person-fill"></i>
+                                        </div>
+                                        <div class="user-details">
+                                            <div class="user-name-display" id="userNameDisplay"></div>
+                                            <div class="d-flex align-items-center gap-3 mt-2">
+                                                <div class="d-flex align-items-center gap-1">
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <span class="user-level-text">Nivel <span id="userLevel">1</span></span>
+                                                </div>
+                                                <div class="d-flex align-items-center gap-1">
+                                                    <i class="bi bi-coin text-success"></i>
+                                                    <span class="user-points-text"><span id="userPoints">0</span> pts</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <!-- Manteniendo los enlaces de acción existentes -->
+                                <!-- Removed Mi Perfil and Mis Pedidos menu items as per request -->
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="#" onclick="logout()">
+                                        <i class="bi bi-box-arrow-right me-2"></i>Cerrar Sesión
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Ocultando el levelUpDisplay de la barra de navegación -->
+                    <div id="levelUpDisplay" class="d-none" style="display: none !important;">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="level-badge">
+                                <i class="bi bi-star-fill me-1"></i>
+                                <span id="userLevelHidden">1</span>
+                            </div>
+                            <div class="text-white d-none d-lg-block">
+                                <small class="d-block opacity-75">Puntos</small>
+                                <strong id="userPointsHidden" class="text-primary">0</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Reestructuración completa del catálogo con sidebar y diseño moderno -->
+    <main class="catalog-main">
+        <section class="catalog-section">
+            <div class="container-fluid">
+                <!-- Título del catálogo -->
+                <div class="text-center mb-5">
+                    <h1 class="display-4 catalog-title">
+                        <span class="text-primary">Nuestro</span> Catálogo
+                    </h1>
+                    <p class="lead catalog-subtitle">Descubre toda nuestra colección de productos gaming</p>
+                </div>
+
+                <div class="row">
+                    <!-- Sidebar izquierdo con todos los filtros -->
+                    <div class="col-lg-3 col-md-4 mb-4">
+                        <div class="catalog-sidebar p-4">
+                            <!-- Búsqueda -->
+                            <div class="filter-section">
+                                <h5 class="text-white mb-3">
+                                    <i class="bi bi-search me-2"></i>Búsqueda
+                                </h5>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-dark border-secondary">
+                                        <i class="bi bi-search text-primary"></i>
+                                    </span>
+                                    <input type="text" class="form-control bg-dark border-secondary text-white" 
+                                           id="searchInput" placeholder="Buscar productos...">
+                                </div>
+                            </div>
+
+                            <!-- Filtro de precio con slider moderno -->
+                            <div class="filter-section">
+                                <h5 class="text-white mb-3">
+                                    <i class="bi bi-currency-dollar me-2"></i>Rango de Precio
+                                </h5>
+                                <div class="price-range-container">
+                                    <input type="range" class="price-range-slider" id="minPriceSlider" 
+                                           min="0" max="1500000" value="0" step="10000">
+                                    <input type="range" class="price-range-slider" id="maxPriceSlider" 
+                                           min="0" max="1500000" value="1500000" step="10000">
+                                    <div class="price-display">
+                                        $<span id="minPriceDisplay">0</span> - $<span id="maxPriceDisplay">1,500,000</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Categorías -->
+                            <div class="filter-section">
+                                <h5 class="text-white mb-3">
+                                    <i class="bi bi-grid-3x3-gap me-2"></i>Categorías
+                                </h5>
+                                <div class="d-flex flex-wrap">
+                                    <button class="category-btn active" data-category="all">
+                                        <i class="bi bi-grid-3x3-gap me-1"></i>Todos
+                                    </button>
+                                    <button class="category-btn" data-category="Consolas">
+                                        <i class="bi bi-controller me-1"></i>Consolas
+                                    </button>
+                                    <button class="category-btn" data-category="Accesorios">
+                                        <i class="bi bi-headphones me-1"></i>Accesorios
+                                    </button>
+                                    <button class="category-btn" data-category="Computadores Gamers">
+                                        <i class="bi bi-pc-display me-1"></i>PC Gamer
+                                    </button>
+                                    <button class="category-btn" data-category="Sillas Gamers">
+                                        <i class="bi bi-chair me-1"></i>Sillas
+                                    </button>
+                                    <button class="category-btn" data-category="Juegos de Mesa">
+                                        <i class="bi bi-dice-5-fill me-1"></i>Juegos de Mesa
+                                    </button>
+                                    <button class="category-btn" data-category="Mouse">
+                                        <i class="bi bi-mouse me-1"></i>Mouse
+                                    </button>
+                                    <button class="category-btn" data-category="Mousepad">
+                                        <i class="bi bi-mouse2 me-1"></i>Mousepad
+                                    </button>
+                                    <button class="category-btn" data-category="Poleras Personalizadas">
+                                        <i class="bi bi-shirt me-1"></i>Poleras
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Botón limpiar filtros -->
+                            <button type="button" class="btn btn-outline-secondary w-100" id="clearFilters">
+                                <i class="bi bi-x-circle me-2"></i>Limpiar Filtros
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Área principal de productos con ordenamiento -->
+                    <div class="col-lg-9 col-md-8">
+                        <!-- Barra de ordenamiento -->
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="text-white">
+                                <span id="productCount">0</span> productos encontrados
+                            </div>
+                            <div class="d-flex align-items-center gap-3">
+                                <label for="sortSelect" class="text-white mb-0">Ordenar por:</label>
+                                <select class="form-select sort-dropdown" id="sortSelect">
+                                    <option value="relevance">Relevancia</option>
+                                    <option value="price-asc">Precio: Menor a Mayor</option>
+                                    <option value="price-desc">Precio: Mayor a Menor</option>
+                                    <option value="name-asc">Nombre: A-Z</option>
+                                    <option value="name-desc">Nombre: Z-A</option>
+                                    <option value="category">Categoría</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Grid de productos modernizado -->
+                        <div class="row g-4" id="catalog-product-grid">
+                            <div class="col-12 catalog-loading text-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Cargando productos...</span>
+                                </div>
+                                <p class="mt-3 text-white">Cargando catálogo completo...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de detalles del producto expandido con reseñas -->
+    <div class="modal fade catalog-modal" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">
+                        <i class="bi bi-box-seam me-2"></i>
+                        Detalles del Producto
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Agregando pestañas para organizar contenido -->
+                    <ul class="nav nav-tabs mb-4" id="productTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab">
+                                <i class="bi bi-info-circle me-2"></i>Detalles
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab">
+                                <i class="bi bi-star me-2"></i>Reseñas <span id="reviewsCount" class="badge bg-primary ms-1">0</span>
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="productTabsContent">
+                        <!-- Pestaña de Detalles -->
+                        <div class="tab-pane fade show active" id="details" role="tabpanel">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <!-- Corrigiendo IDs del modal para que coincidan con el JavaScript -->
+                                    <img id="productModalImage" src="../img/placeholder.svg" alt="" class="modal-product-image">
+                                </div>
+                                <div class="col-md-6 product-info">
+                                    <h4 id="productModalTitle" class="product-name"></h4>
+                                    <div class="product-brand mb-3">
+                                        <i class="bi bi-award me-1"></i>
+                                        <span id="productModalCategory"></span>
+                                    </div>
+                                    
+                                    <!-- Agregando información adicional: marca, modelo, descripción y stock -->
+                                    <div class="product-details-info mb-3">
+                                        <div class="info-item mb-2">
+                                            <strong>Marca:</strong> <span id="productModalBrand" class="text-muted">-</span>
+                                        </div>
+                                        <div class="info-item mb-2">
+                                            <strong>Modelo:</strong> <span id="productModalModel" class="text-muted">-</span>
+                                        </div>
+                                        <div class="info-item mb-2">
+                                            <strong>Descripción:</strong> <span id="productModalDescription" class="text-muted"></span>
+                                        </div>
+                                        <div class="info-item mb-3">
+                                            <strong>Stock disponible:</strong> <span id="productModalStock" class="badge bg-success">0</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="product-price" id="productModalPrice"></div>
+                                    <button type="button" class="btn-gaming w-100" id="addToCartBtn">
+                                        <i class="bi bi-cart-plus me-2"></i>
+                                        Agregar al Carrito
+                                    </button>
+                                    <button class="btn btn-outline-primary btn-sm mt-2 w-100" onclick="showProductModal('${product.id}')">
+                                        <i class="bi bi-eye me-2"></i>Ver Detalles
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nueva pestaña de Reseñas -->
+                        <div class="tab-pane fade" id="reviews" role="tabpanel">
+                            <!-- Sección de Reseñas de Clientes -->
+                            <div class="reviews-section">
+                                <!-- 1. Resumen y Listado de Reseñas Existentes -->
+                                <div class="reviews-summary mb-4">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-6">
+                                            <div class="rating-summary text-center">
+                                                <div class="average-rating mb-2">
+                                                    <span class="rating-number" id="averageRating">4.5</span>
+                                                    <div class="stars-display" id="averageStars">
+                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                        <i class="bi bi-star-fill text-warning"></i>
+                                                        <i class="bi bi-star-half text-warning"></i>
+                                                    </div>
+                                                </div>
+                                                <p class="text-muted mb-0" id="reviewsSummary">Basado en 15 reseñas</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="rating-breakdown">
+                                                <div class="rating-bar d-flex align-items-center mb-1">
+                                                    <span class="rating-label">5★</span>
+                                                    <div class="progress flex-grow-1 mx-2">
+                                                        <div class="progress-bar bg-warning" style="width: 60%"></div>
+                                                    </div>
+                                                    <span class="rating-count">9</span>
+                                                </div>
+                                                <div class="rating-bar d-flex align-items-center mb-1">
+                                                    <span class="rating-label">4★</span>
+                                                    <div class="progress flex-grow-1 mx-2">
+                                                        <div class="progress-bar bg-warning" style="width: 27%"></div>
+                                                    </div>
+                                                    <span class="rating-count">4</span>
+                                                </div>
+                                                <div class="rating-bar d-flex align-items-center mb-1">
+                                                    <span class="rating-label">3★</span>
+                                                    <div class="progress flex-grow-1 mx-2">
+                                                        <div class="progress-bar bg-warning" style="width: 13%"></div>
+                                                    </div>
+                                                    <span class="rating-count">2</span>
+                                                </div>
+                                                <div class="rating-bar d-flex align-items-center mb-1">
+                                                    <span class="rating-label">2★</span>
+                                                    <div class="progress flex-grow-1 mx-2">
+                                                        <div class="progress-bar bg-warning" style="width: 0%"></div>
+                                                    </div>
+                                                    <span class="rating-count">0</span>
+                                                </div>
+                                                <div class="rating-bar d-flex align-items-center">
+                                                    <span class="rating-label">1★</span>
+                                                    <div class="progress flex-grow-1 mx-2">
+                                                        <div class="progress-bar bg-warning" style="width: 0%"></div>
+                                                    </div>
+                                                    <span class="rating-count">0</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <!-- Listado de reseñas individuales -->
+                                <div class="reviews-list" id="reviewsList">
+                                    <!-- Reseña ejemplo 1 -->
+                                    <div class="review-card mb-4">
+                                        <div class="d-flex">
+                                            <div class="review-avatar me-3">
+                                                <div class="avatar-circle">
+                                                    <i class="bi bi-person-fill"></i>
+                                                </div>
+                                            </div>
+                                            <div class="review-content flex-grow-1">
+                                                <div class="review-header d-flex justify-content-between align-items-start mb-2">
+                                                    <div>
+                                                        <h6 class="review-author mb-1">Carlos Mendoza</h6>
+                                                        <div class="review-rating mb-1">
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                        </div>
+                                                    </div>
+                                                    <small class="text-muted">15 de Enero, 2024</small>
+                                                </div>
+                                                <p class="review-text mb-0">Excelente producto, superó mis expectativas. La calidad es increíble y llegó muy rápido. Definitivamente lo recomiendo para cualquier gamer serio.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Reseña ejemplo 2 -->
+                                    <div class="review-card mb-4">
+                                        <div class="d-flex">
+                                            <div class="review-avatar me-3">
+                                                <div class="avatar-circle">
+                                                    <i class="bi bi-person-fill"></i>
+                                                </div>
+                                            </div>
+                                            <div class="review-content flex-grow-1">
+                                                <div class="review-header d-flex justify-content-between align-items-start mb-2">
+                                                    <div>
+                                                        <h6 class="review-author mb-1">Ana García</h6>
+                                                        <div class="review-rating mb-1">
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star text-muted"></i>
+                                                        </div>
+                                                    </div>
+                                                    <small class="text-muted">8 de Enero, 2024</small>
+                                                </div>
+                                                <p class="review-text mb-0">Muy buen producto, aunque el precio podría ser un poco mejor. La experiencia de compra fue excelente y el envío muy rápido.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Reseña ejemplo 3 -->
+                                    <div class="review-card mb-4">
+                                        <div class="d-flex">
+                                            <div class="review-avatar me-3">
+                                                <div class="avatar-circle">
+                                                    <i class="bi bi-person-fill"></i>
+                                                </div>
+                                            </div>
+                                            <div class="review-content flex-grow-1">
+                                                <div class="review-header d-flex justify-content-between align-items-start mb-2">
+                                                    <div>
+                                                        <h6 class="review-author mb-1">Diego Ramírez</h6>
+                                                        <div class="review-rating mb-1">
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                            <i class="bi bi-star-fill text-warning"></i>
+                                                        </div>
+                                                    </div>
+                                                    <small class="text-muted">2 de Enero, 2024</small>
+                                                </div>
+                                                <p class="review-text mb-0">¡Increíble! Exactamente lo que estaba buscando. La calidad es premium y el servicio al cliente de Level-Up Gamer es de primera.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <hr class="my-4">
+
+                                <!-- 2. Formulario para Escribir una Nueva Reseña -->
+                                <div class="write-review-section">
+                                    <h3 class="mb-4">
+                                        <i class="bi bi-pencil-square me-2"></i>Deja tu reseña
+                                    </h3>
+
+                                    <!-- Estado Habilitado (usuario compró el producto) -->
+                                    <div id="reviewFormEnabled" class="review-form-enabled">
+                                        <form id="reviewForm">
+                                            <!-- Sistema de calificación por estrellas interactivo -->
+                                            <div class="mb-4">
+                                                <label class="form-label text-white">Tu calificación</label>
+                                                <div class="star-rating" id="starRating">
+                                                    <i class="bi bi-star star-interactive" data-rating="1"></i>
+                                                    <i class="bi bi-star star-interactive" data-rating="2"></i>
+                                                    <i class="bi bi-star star-interactive" data-rating="3"></i>
+                                                    <i class="bi bi-star star-interactive" data-rating="4"></i>
+                                                    <i class="bi bi-star star-interactive" data-rating="5"></i>
+                                                </div>
+                                                <input type="hidden" id="selectedRating" value="0">
+                                            </div>
+
+                                            <!-- Título de la reseña -->
+                                            <div class="mb-3">
+                                                <label for="reviewTitle" class="form-label text-white">Título de la reseña</label>
+                                                <input type="text" class="form-control bg-dark border-secondary text-white" 
+                                                       id="reviewTitle" placeholder="Resumen de tu experiencia">
+                                            </div>
+
+                                            <!-- Cuerpo de la reseña -->
+                                            <div class="mb-4">
+                                                <label for="reviewBody" class="form-label text-white">Tu reseña</label>
+                                                <textarea class="form-control bg-dark border-secondary text-white" 
+                                                          id="reviewBody" rows="4" 
+                                                          placeholder="Comparte tu experiencia con este producto..."></textarea>
+                                            </div>
+
+                                            <!-- Botón enviar -->
+                                            <button type="submit" class="btn btn-primary btn-lg">
+                                                <i class="bi bi-send me-2"></i>Enviar Reseña
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                    <!-- Estado Deshabilitado (usuario no compró el producto o no está logueado) -->
+                                    <div id="reviewFormDisabled" class="review-form-disabled d-none">
+                                        <div class="alert alert-info d-flex align-items-center" role="alert">
+                                            <i class="bi bi-info-circle-fill me-3 fs-4"></i>
+                                            <div>
+                                                <h5 class="alert-heading mb-2">¿Quieres dejar una reseña?</h5>
+                                                <p class="mb-0">Debes haber comprado este producto para poder dejar una reseña. 
+                                                <a href="login.html" class="alert-link">Inicia sesión</a> o 
+                                                <a href="registro.html" class="alert-link">regístrate</a> para comenzar.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación de producto agregado al carrito -->
+    <div class="modal fade catalog-modal" id="cartConfirmationModal" tabindex="-1" aria-labelledby="cartConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-2">
+                    <h5 class="modal-title d-flex align-items-center" id="cartConfirmationModalLabel">
+                        <i class="bi bi-check-circle-fill me-2 fs-4"></i>
+                        ¡Producto agregado exitosamente!
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-2">
+                    <div class="row align-items-center">
+                        <div class="col-4">
+                            <img id="confirmationProductImage" src="../img/placeholder.svg" alt="" class="img-fluid rounded shadow">
+                        </div>
+                        <div class="col-8">
+                            <h6 id="confirmationProductName" class="text-white mb-2 fw-bold"></h6>
+                            <div class="product-brand mb-2" style="font-size: 0.8rem;">
+                                <i class="bi bi-award me-1"></i>
+                                <span id="confirmationProductBrand"></span>
+                            </div>
+                            <p id="confirmationProductDescription" class="text-muted small mb-0"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-outline-success me-2" data-bs-dismiss="modal">
+                        <i class="bi bi-bag-plus me-1"></i>
+                        Seguir comprando
+                    </button>
+                    <a href="carrito.html" class="btn btn-success">
+                        <i class="bi bi-cart3 me-1"></i>
+                        Ir al carrito
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer idéntico al index.html -->
+    <footer class="footer-modern">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5>
+                        <!-- Cambiando icono del footer también -->
+                        <img src="../img/setup-inicio.jpg" alt="Level Up Gamer" class="footer-brand-icon me-2">
+                        LEVEL-UP GAMER
+                    </h5>
+                    <p class="text-muted">
+                        Tu destino gaming definitivo en Chile. Productos de calidad, 
+                        precios competitivos y la mejor experiencia de compra.
+                    </p>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6>Navegación</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="../index.html">Inicio</a></li>
+                        <li class="mb-2"><a href="catalogo.html">Catálogo</a></li>
+                        <li class="mb-2"><a href="blogNoticias.html">Blog</a></li>
+                        <li class="mb-2"><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6>Mi Cuenta</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="login.html">Iniciar Sesión</a></li>
+                        <li class="mb-2"><a href="registro.html">Crear Cuenta</a></li>
+                        <li class="mb-2"><a href="perfil.html">Mi Perfil</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6>Soporte</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Centro de Ayuda</a></li>
+                        <li class="mb-2"><a href="#">Envíos</a></li>
+                        <li class="mb-2"><a href="#">Devoluciones</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h6>Síguenos</h6>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-muted fs-5"><i class="bi bi-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4" style="border-color: var(--gaming-border);">
+            
+            <div class="text-center">
+                <p class="text-muted mb-0">
+                    &copy; 2024 LEVEL-UP GAMER. Todos los derechos reservados.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <!-- Actualizando scripts para corregir errores de carga -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Scripts principales -->
+    <script src="../js/main.js"></script>
+    <script src="../js/reseñas.js"></script>
+    
+    <!-- JavaScript completamente reescrito para el nuevo diseño -->
+    <script>
+        let allProducts = [];
+        let filteredProducts = [];
+        let currentCategory = 'all';
+        let currentSearchTerm = '';
+        let minPrice = 0;
+        let maxPrice = 2000000;
+        let currentSort = 'relevance';
+
+        function getImagePath(imageName) {
+            if (!imageName) return '../img/placeholder.svg';
+            
+            // Check if we have base64 data for this image in levelup_products
+            const productsData = localStorage.getItem('levelup_products');
+            if (productsData) {
+                try {
+                    const productCatalog = JSON.parse(productsData);
+                    // Search through all products in the catalog object
+                    const productWithImage = Object.values(productCatalog).find(p => 
+                        p.image === imageName && p.imageData
+                    );
+                    
+                    if (productWithImage && productWithImage.imageData) {
+                        console.log('[v0] Using base64 image for:', imageName);
+                        return productWithImage.imageData;
+                    }
+                } catch (e) {
+                    console.error('[v0] Error parsing products from localStorage:', e);
+                }
+            }
+            
+            // Default to file path for existing images
+            console.log('[v0] Using file path for:', imageName);
+            return `../img/productos/${imageName}`;
+        }
+
+
+
+        // Inicialización mejorada del catálogo
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('[v0] Inicializando catálogo de productos');
+            
+            // Cargar productos desde el catálogo principal
+            if (window.getProducts) {
+                const productCatalog = window.getProducts();
+                allProducts = Object.values(productCatalog);
+                console.log('[v0] Productos cargados:', allProducts.length);
+            } else {
+                console.error('[v0] Función getProducts no encontrada');
+            }
+            
+            filteredProducts = [...allProducts];
+            
+            // Inicializar controles
+            initializePriceSlider();
+            initializeFilters();
+            initializeSorting();
+            
+            // Renderizar productos iniciales
+            renderProducts();
+            updateProductCount();
+            updateCartBadge(); // Asegurarse de que el badge se actualice al cargar la página
+            
+            console.log('[v0] Catálogo inicializado correctamente');
+        });
+
+        // Funciones auxiliares (asumiendo que existen en main.js o se definen aquí)
+        function formatPrice(price) {
+            return `$${price.toLocaleString('es-CL')}`;
+        }
+
+        function initializePriceSlider() {
+            const minSlider = document.getElementById('minPriceSlider');
+            const maxSlider = document.getElementById('maxPriceSlider');
+            const minPriceDisplay = document.getElementById('minPriceDisplay');
+            const maxPriceDisplay = document.getElementById('maxPriceDisplay');
+
+            minSlider.min = 0;
+            minSlider.max = 2000000; // Ajustar según el rango máximo de precios
+            minSlider.step = 10000;
+            minSlider.value = minPrice;
+
+            maxSlider.min = 0;
+            maxSlider.max = 2000000; // Ajustar según el rango máximo de precios
+            maxSlider.step = 10000;
+            maxSlider.value = maxPrice;
+
+            minPriceDisplay.textContent = formatPrice(minPrice).replace('$', '');
+            maxPriceDisplay.textContent = formatPrice(maxPrice).replace('$', '');
+
+            minSlider.addEventListener('input', function() {
+                let currentMin = parseInt(this.value);
+                if (currentMin > parseInt(maxSlider.value)) {
+                    currentMin = parseInt(maxSlider.value);
+                    this.value = currentMin;
+                }
+                minPrice = currentMin;
+                minPriceDisplay.textContent = formatPrice(minPrice).replace('$', '');
+                applyFilters();
+            });
+
+            maxSlider.addEventListener('input', function() {
+                let currentMax = parseInt(this.value);
+                if (currentMax < parseInt(minSlider.value)) {
+                    currentMax = parseInt(minSlider.value);
+                    this.value = currentMax;
+                }
+                maxPrice = currentMax;
+                maxPriceDisplay.textContent = formatPrice(maxPrice).replace('$', '');
+                applyFilters();
+            });
+        }
+
+        function initializeFilters() {
+            document.getElementById('searchInput').addEventListener('input', function() {
+                currentSearchTerm = this.value.toLowerCase().trim();
+                applyFilters();
+            });
+
+            document.querySelectorAll('.category-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCategory = this.getAttribute('data-category');
+                    applyFilters();
+                });
+            });
+
+            document.getElementById('clearFilters').addEventListener('click', function() {
+                document.getElementById('searchInput').value = '';
+                document.getElementById('minPriceSlider').value = 0;
+                document.getElementById('maxPriceSlider').value = 2000000; // Reset to max
+                
+                currentSearchTerm = '';
+                minPrice = 0;
+                maxPrice = 2000000;
+                currentCategory = 'all';
+                
+                document.querySelector('.category-btn[data-category="all"]').classList.add('active');
+                document.getElementById('minPriceDisplay').textContent = formatPrice(minPrice).replace('$', '');
+                document.getElementById('maxPriceDisplay').textContent = formatPrice(maxPrice).replace('$', '');
+                
+                applyFilters();
+            });
+        }
+
+        function initializeSorting() {
+            document.getElementById('sortSelect').addEventListener('change', function() {
+                currentSort = this.value;
+                applyFilters();
+            });
+        }
+
+        function applyFilters() {
+            console.log('[v0] AplicANDO filtros...');
+            filteredProducts = [...allProducts];
+
+            // Filtrar por categoría
+            if (currentCategory !== 'all') {
+                filteredProducts = filteredProducts.filter(product => product.category === currentCategory);
+            }
+
+            // Filtrar por búsqueda
+            if (currentSearchTerm) {
+                filteredProducts = filteredProducts.filter(product =>
+                    product.name.toLowerCase().includes(currentSearchTerm) ||
+                    product.brand.toLowerCase().includes(currentSearchTerm)
+                );
+            }
+
+            // Filtrar por precio
+            filteredProducts = filteredProducts.filter(product =>
+                product.price >= minPrice && product.price <= maxPrice
+            );
+
+            // Ordenar productos
+            sortProducts();
+
+            // Renderizar productos
+            renderProducts();
+            updateProductCount();
+            console.log('[v0] Filtros aplicados. Productos restantes:', filteredProducts.length);
+        }
+
+        function sortProducts() {
+            switch (currentSort) {
+                case 'price-asc':
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name-asc':
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'name-desc':
+                    filteredProducts.sort((a, b) => b.name.localeCompare(a.name));
+                    break;
+                case 'category':
+                    filteredProducts.sort((a, b) => a.category.localeCompare(b.category));
+                    break;
+                case 'relevance': // Default case, no sorting needed if it's relevance
+                default:
+                    // No sorting for relevance, or maintain original order
+                    break;
+            }
+        }
+
+        function renderProducts() {
+            const container = document.getElementById('catalog-product-grid');
+            container.innerHTML = ''; // Clear previous products
+
+            if (filteredProducts.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center">
+                        <div class="text-muted">
+                            <i class="bi bi-search fs-1 mb-3 d-block"></i>
+                            <h5>No se encontraron productos</h5>
+                            <p>Intenta ajustar los filtros o buscar con otros términos.</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredProducts.forEach(product => {
+                console.log('[v0] Renderizando producto:', product.name, 'con imagen:', product.image);
+                const imagePath = getImagePath(product.image); // Use the updated getImagePath function
+                console.log('[v0] Ruta de imagen procesada:', imagePath);
+                
+                const productCard = document.createElement('div');
+                productCard.className = 'col-xl-3 col-lg-4 col-md-6 col-sm-6';
+                productCard.innerHTML = `
+                    <div class="product-card-modern">
+                        <img src="${imagePath}" class="card-img-top" alt="${product.name}"
+                             onerror="console.log('[v0] Error cargando imagen:', '${imagePath}'); this.src='../img/placeholder.svg'">
+                        <div class="card-body">
+                            <h5 class="product-title">${product.name}</h5>
+                            <p class="product-category">
+                                <i class="bi bi-tag me-1"></i>${product.category}
+                            </p>
+                            <div class="product-price">${formatPrice(product.price)}</div>
+                            <button class="btn-add-to-cart" onclick="addToCart('${product.id}')">
+                                <i class="bi bi-cart-plus me-2"></i>Agregar al Carrito
+                            </button>
+                            <button class="btn btn-outline-primary btn-sm mt-2 w-100" onclick="showProductModal('${product.id}')">
+                                <i class="bi bi-eye me-2"></i>Ver Detalles
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(productCard);
+            });
+        }
+
+        function updateProductCount() {
+            document.getElementById('productCount').textContent = filteredProducts.length;
+        }
+
+        // Implementación completa de addToCart
+        function addToCart(productId) {
+            console.log('[v0] Agregando producto al carrito:', productId);
+            
+            // Buscar el producto en el catálogo
+            const product = allProducts.find(p => p.id === productId);
+            if (!product) {
+                console.error('[v0] Producto no encontrado:', productId);
+                showNotification('Producto no encontrado', 'error');
+                return;
+            }
+
+            // Obtener carrito actual del localStorage
+            const cart = JSON.parse(localStorage.getItem('levelup_cart')) || [];
+
+            // Verificar si el producto ya existe en el carrito
+            const existingItem = cart.find(item => String(item.id) === String(productId));
+
+            if (existingItem) {
+                // Si existe, aumentar la cantidad
+                existingItem.quantity = (existingItem.quantity || 0) + 1;
+            } else {
+                // Si no existe, agregar nuevo item
+                const newItem = {
+                    id: productId,
+                    name: product.name,
+                    brand: product.brand, // Corregido: usar product.brand en lugar de product.category
+                    price: product.price,
+                    originalPrice: product.price + 10000, // This might be intended for discounts or original price display
+                    image: product.image,
+                    description: product.description,
+                    quantity: 1
+                };
+                cart.push(newItem);
+            }
+
+            // Guardar en localStorage con ambas claves para compatibilidad
+            localStorage.setItem('levelup_cart', JSON.stringify(cart));
+            localStorage.setItem('carrito', JSON.stringify(cart));
+
+            // Actualizar badge del carrito y mostrar notificación
+            updateCartBadge();
+            showNotification(`${product.name} agregado al carrito`, 'success');
+        }
+
+        function updateCartBadge() {
+            const cartBadges = [document.getElementById('cartBadge')]; // Only one badge element in the provided HTML
+            
+            const cart = JSON.parse(localStorage.getItem('levelup_cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+            
+            cartBadges.forEach(cartBadge => {
+                if (cartBadge) {
+                    cartBadge.textContent = totalItems;
+                    if (totalItems > 0) {
+                        cartBadge.classList.remove('d-none');
+                        cartBadge.style.display = 'inline-block';
+                    } else {
+                        cartBadge.classList.add('d-none');
+                        cartBadge.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+            notification.style.cssText = 'top: 20px; right: 20px; z-index: 9999;';
+            notification.innerHTML = `${message}<button type="button" class="btn-close" data-bs-dismiss="alert"></button>`;
+            document.body.appendChild(notification);
+            setTimeout(() => notification.remove(), 3000);
+        }
+
+        // Dummy getProducts function for demonstration if not provided by main.js
+        if (!window.getProducts) {
+            window.getProducts = function() {
+                console.log('[v0] Usando función dummy getProducts');
+                const products = {
+                    'JM001': { id: 'JM001', name: 'Catan', brand: 'Catan', category: 'Juegos de Mesa', price: 29990, description: 'El clásico juego de mesa de estrategia y comercio.', image: 'catan.jpg', stock: 15, marca: 'Catan', modelo: 'Edición Clásica' },
+                    'JM002': { id: 'JM002', name: 'Carcassonne', brand: 'Carcassonne', category: 'Juegos de Mesa', price: 24990, description: 'Un juego de colocación de fichas donde los jugadores construyen el paisaje alrededor de la fortaleza medieval de Carcassonne.', image: 'carcassonne.jpg', stock: 10, marca: 'Carcassonne', modelo: 'Edición Estándar' },
+                    'AC001': { id: 'AC001', name: 'Controlador Inalámbrico Xbox Series X', brand: 'Xbox', category: 'Accesorios', price: 59990, description: 'Ofrece una experiencia de juego cómoda con botones mapeables y una respuesta táctil mejorada.', image: 'controlador-xbox.jpg', stock: 25, marca: 'Microsoft', modelo: 'Xbox Wireless Controller' },
+                    'AC002': { id: 'AC002', name: 'Auriculares Gamer HyperX Cloud II', brand: 'HyperX', category: 'Accesorios', price: 79990, description: 'Proporcionan un sonido envolvente de calidad con un micrófono desmontable y almohadillas de espuma viscoelástica.', image: 'auriculares-hyperx.jpg', stock: 8, marca: 'HyperX', modelo: 'Cloud II' },
+                    'CO001': { id: 'CO001', name: 'PlayStation 5', brand: 'PlayStation', category: 'Consolas', price: 549990, description: 'La consola de última generación de Sony, que ofrece gráficos impresionantes y tiempos de carga ultrarrápidos.', image: 'playstation-5.jpg', stock: 3, marca: 'Sony', modelo: 'PS5' },
+                    'CG001': { id: 'CG001', name: 'PC Gamer ASUS ROG Strix', brand: 'ASUS', category: 'Computadores Gamers', price: 1299990, description: 'Un potente equipo diseñado para los gamers más exigentes, equipado con los últimos componentes para ofrecer un rendimiento excepcional en cualquier juego.', image: 'pc-gamer-asus.jpg', stock: 1, marca: 'ASUS', modelo: 'ROG Strix GA15' },
+                    'SG001': { id: 'SG001', name: 'Silla Gamer Secretlab Titan', brand: 'Secretlab', category: 'Sillas Gamers', price: 349990, description: 'Diseñada para el máximo confort, esta silla ofrece un soporte ergonómico y personalización ajustable para sesiones de juego prolongadas.', image: 'silla-secretlab.jpg', stock: 5, marca: 'Secretlab', modelo: 'Titan Evo 2022' },
+                    'MS001': { id: 'MS001', name: 'Mouse Gamer Logitech G502 HERO', brand: 'Logitech', category: 'Mouse', price: 49990, description: 'Con sensor de alta precisión y botones personalizables, este mouse es ideal para gamers que buscan un control preciso y personalización.', image: 'mouse-logitech.jpg', stock: 12, marca: 'Logitech', modelo: 'G502 HERO' },
+                    'MP001': { id: 'MP001', name: 'Mousepad Razer Goliathus Extended Chroma', brand: 'Razer', category: 'Mousepad', price: 29990, description: 'Ofrece un área de juego amplia con iluminación RGB personalizable, asegurando una superficie suave y uniforme para el movimiento del mouse.', image: 'mousepad-razer.jpg', stock: 20, marca: 'Razer', modelo: 'Goliathus Extended Chroma' },
+                    'PP001': { id: 'PP001', name: 'Polera Gamer Personalizada \'Level-Up\'', brand: 'Level-Up', category: 'Poleras Personalizadas', price: 14990, description: 'Una camiseta cómoda y estilizada, con la posibilidad de personalizarla con tu gamer tag o diseño favorito.', image: 'polera-personalizada.jpg', stock: 30, marca: 'Level-Up', modelo: 'Custom Gamer Tee' }
+                };
+                console.log('[v0] Productos definidos:', Object.keys(products));
+                console.log('[v0] Ejemplo de ruta de imagen:', products['JM001'].image);
+                return products;
+            };
+        }
+    </script>

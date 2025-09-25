@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Usuarios - LevelUp Gaming</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/admin.css" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <!-- Copiando header exacto de adminProductos -->
+    <header class="admin-header">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <!-- Botón hamburguesa para móviles -->
+                    <button class="btn btn-outline-light d-md-none me-3" id="toggleSidebar" aria-label="Alternar sidebar">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div>
+                        <h4 class="mb-0 text-white">Panel de Administración</h4>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="admin.html" class="text-light">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Usuarios</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light position-relative" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationCount">
+                                0
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end notification-dropdown">
+                            <li><h6 class="dropdown-header">Notificaciones</h6></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person-plus text-info"></i> Nuevos usuarios registrados</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center" href="#">Ver todas</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i>
+                            <span>Administrador</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Mi Perfil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Configuración</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../index.html"><i class="bi bi-house"></i> Volver al sitio</a></li>
+                            <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Copiando sidebar exacto de adminProductos -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-brand">
+                <i class="bi bi-controller"></i>
+                <span>LevelUp Admin</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <span class="nav-section-title">Principal</span>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin.html">
+                                <i class="bi bi-speedometer2"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">Gestión</span>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminProductos.html">
+                                <i class="bi bi-box-seam"></i>
+                                <span>Productos</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="adminUsuarios.html">
+                                <i class="bi bi-people"></i>
+                                <span>Usuarios</span>
+                                <div class="nav-indicator"></div>
+                            </a>
+                        </li>
+                        <!-- Added points management navigation link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminPuntos.html">
+                                <i class="bi bi-star"></i>
+                                <span>Puntos</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminPedidos.html">
+                                <i class="bi bi-cart-check"></i>
+                                <span>Pedidos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- actualizando sección de contenido con enlaces correctos -->
+                <div class="nav-section">
+                    <span class="nav-section-title">Contenido</span>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../blogNoticias.html">
+                                <i class="bi bi-newspaper"></i>
+                                <span>Blog</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../blogNoticias.html">
+                                <i class="bi bi-calendar-event"></i>
+                                <span>Eventos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Copiando estructura main exacta de adminProductos -->
+        <main class="admin-main">
+            <section class="admin-section active">
+                <div class="section-header">
+                    <div>
+                        <!-- Reduced title size from h2 to h3 for better proportion -->
+                        <h3><i class="bi bi-people"></i> Gestión de Usuarios</h3>
+                        <p class="text-muted">Administra usuarios registrados - Última actualización: <span id="lastUpdate">--</span></p>
+                    </div>
+                    <div class="section-actions">
+                        <button class="btn btn-outline-primary btn-sm" id="refreshUsers">
+                            <i class="bi bi-arrow-clockwise"></i> Actualizar
+                        </button>
+                        <button class="btn btn-primary btn-sm" id="addUserBtn">
+                            <i class="bi bi-person-plus"></i> Nuevo Usuario
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Copiando KPI cards exactas de adminProductos adaptadas para usuarios -->
+                <div class="row g-4 mb-4">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="kpi-card kpi-primary">
+                            <div class="kpi-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value" id="totalUsers">0</div>
+                                <div class="kpi-label">Total Usuarios</div>
+                                <div class="kpi-trend">
+                                    <i class="bi bi-arrow-up"></i>
+                                    <span>Usuarios registrados</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6">
+                        <div class="kpi-card kpi-success">
+                            <div class="kpi-icon">
+                                <i class="bi bi-person-check"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value" id="normalUsers">0</div>
+                                <div class="kpi-label">Usuarios Normales</div>
+                                <div class="kpi-trend">
+                                    <i class="bi bi-check"></i>
+                                    <span>Activos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6">
+                        <div class="kpi-card kpi-warning">
+                            <div class="kpi-icon">
+                                <i class="bi bi-mortarboard"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value" id="duocUsers">0</div>
+                                <div class="kpi-label">Usuarios DUOC UC</div>
+                                <div class="kpi-trend">
+                                    <i class="bi bi-mortarboard"></i>
+                                    <span>Con beneficios</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6">
+                        <div class="kpi-card kpi-info">
+                            <div class="kpi-icon">
+                                <i class="bi bi-calendar-plus"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value" id="todayUsers">0</div>
+                                <div class="kpi-label">Registrados Hoy</div>
+                                <div class="kpi-trend">
+                                    <i class="bi bi-calendar-plus"></i>
+                                    <span>Nuevos registros</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Copiando estructura de tabla exacta de adminProductos -->
+                <!-- Applying blue gradient style like adminPedidos.html -->
+                <div class="dashboard-widget" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+                    <div class="widget-header" style="background: rgba(255,255,255,0.1); color: white; padding: 1rem; border-radius: 12px 12px 0 0; backdrop-filter: blur(10px);">
+                        <h6 style="color: white; margin: 0;"><i class="bi bi-table"></i> Lista de Usuarios</h6>
+                        <div class="widget-actions d-flex gap-2">
+                            <button class="btn btn-outline-secondary btn-sm" id="copyBtn" style="background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.3); color: #333;">Copy</button>
+                            <button class="btn btn-outline-secondary btn-sm" id="csvBtn" style="background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.3); color: #333;">CSV</button>
+                            <button class="btn btn-outline-secondary btn-sm" id="excelBtn" style="background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.3); color: #333;">Excel</button>
+                            <button class="btn btn-outline-secondary btn-sm" id="pdfBtn" style="background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.3); color: #333;">PDF</button>
+                            <select class="form-select form-select-sm" id="userTypeFilter" style="width: auto; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.3); color: #333;">
+                                <option value="">Todos los usuarios</option>
+                                <option value="normal">Usuarios Normales</option>
+                                <option value="duoc">Usuarios DUOC UC</option>
+                            </select>
+                            <input type="text" class="form-control form-control-sm" id="searchUsers" 
+                                   placeholder="Search:" style="width: 200px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.3); color: #333;">
+                        </div>
+                    </div>
+                    <div class="widget-body" style="background: rgba(255,255,255,0.95); padding: 1rem; border-radius: 0 0 12px 12px;">
+                        <div class="table-responsive">
+                            <!-- Tabla comprimida con clases responsivas para evitar scroll lateral -->
+                            <table class="table table-hover table-sm mb-0 users-table">
+                                <thead class="table-header-gradient">
+                                    <tr>
+                                        <th class="text-center" style="width: 50px;">ID</th>
+                                        <th class="text-center" style="width: 120px;">Nombre</th>
+                                        <th class="text-center d-none d-lg-table-cell" style="width: 120px;">Apellido</th>
+                                        <th class="text-center" style="width: 180px;">Correo</th>
+                                        <th class="text-center d-none d-xl-table-cell" style="width: 100px;">RUT</th>
+                                        <th class="text-center d-none d-md-table-cell" style="width: 100px;">Teléfono</th>
+                                        <th class="text-center d-none d-lg-table-cell" style="width: 70px;">Puntos</th>
+                                        <th class="text-center" style="width: 80px;">Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usersTableBody">
+                                    <!-- Estado de carga simplificado -->
+                                    <tr id="loadingRow">
+                                        <td colspan="8" class="text-center py-5">
+                                            <div class="d-flex flex-column align-items-center">
+                                                <div class="spinner-border text-primary mb-3" role="status">
+                                                    <span class="visually-hidden">Cargando...</span>
+                                                </div>
+                                                <h6 class="text-primary mb-2">Cargando registros...</h6>
+                                                <p class="text-muted small mb-3">Por favor espere mientras se cargan los usuarios</p>
+                                                <div class="progress" style="width: 200px; height: 4px;">
+                                                    <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                                         role="progressbar" style="width: 100%"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Agregando estado vacío que falta -->
+                        <div id="emptyState" class="d-none text-center py-5">
+                            <div class="empty-state">
+                                <i class="bi bi-people text-muted" style="font-size: 4rem;"></i>
+                                <h5 class="text-muted mt-3">No hay usuarios para mostrar</h5>
+                                <p class="text-muted">No se encontraron usuarios que coincidan con los filtros aplicados.</p>
+                                <button class="btn btn-primary" id="clearFilters">
+                                    <i class="bi bi-funnel"></i> Limpiar filtros
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Agregando paginación que falta -->
+                        <div class="d-flex justify-content-between align-items-center mt-3">
+                            <div class="text-muted small">
+                                Showing <span id="showingStart">1</span> to <span id="showingEnd">4</span> of <span id="totalEntries">4</span> entries
+                            </div>
+                            <nav>
+                                <ul class="pagination pagination-sm mb-0">
+                                    <li class="page-item">
+                                        <button class="page-link" id="prevPage">Previous</button>
+                                    </li>
+                                    <li class="page-item active">
+                                        <button class="page-link" id="currentPage">1</button>
+                                    </li>
+                                    <li class="page-item">
+                                        <button class="page-link" id="nextPage">Next</button>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modales simplificados -->
+    <div class="modal fade" id="userModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-gradient-primary text-white border-0">
+                    <!-- Reduced modal title size from h5 to h6 -->
+                    <h6 class="modal-title d-flex align-items-center" id="userModalTitle">
+                        <i class="bi bi-person-plus me-2"></i> Agregar Usuario
+                    </h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- Agregando alerta DUOC que falta -->
+                    <div id="duocBenefitModal" class="alert alert-warning border-0 rounded-3 d-none mb-4">
+                        <div class="d-flex align-items-center">
+                            <i class="bi bi-mortarboard fs-4 me-3"></i>
+                            <div>
+                                <h6 class="alert-heading mb-1">¡Beneficio DUOC UC detectado!</h6>
+                                <p class="mb-0">Este usuario tendrá acceso a descuentos especiales y beneficios exclusivos.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="userForm">
+                        <input type="hidden" id="editUserId">
+                        
+                        <!-- Sección de información personal modernizada -->
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-light border-0">
+                                <!-- Reduced card header size from h6 to small -->
+                                <small class="mb-0 text-primary fw-semibold">
+                                    <i class="bi bi-person me-2"></i>Información Personal
+                                </small>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">
+                                            <i class="bi bi-person me-1"></i>Nombre *
+                                        </label>
+                                        <input type="text" class="form-control form-control-lg border-2" id="userFirstName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">
+                                            <i class="bi bi-person me-1"></i>Apellido *
+                                        </label>
+                                        <input type="text" class="form-control form-control-lg border-2" id="userLastName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">
+                                            <i class="bi bi-calendar me-1"></i>Fecha de Nacimiento *
+                                        </label>
+                                        <input type="date" class="form-control form-control-lg border-2" id="userBirthDate" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">
+                                            <i class="bi bi-gender-ambiguous me-1"></i>Género *
+                                        </label>
+                                        <select class="form-select form-select-lg border-2" id="userGender" required>
+                                            <option value="">Seleccionar género</option>
+                                            <option value="masculino">Masculino</option>
+                                            <option value="femenino">Femenino</option>
+                                            <option value="otro">Otro</option>
+                                            <option value="prefiero-no-decir">Prefiero no decir</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección de contacto modernizada -->
+                        <div class="card border-0 shadow-sm mb-4">
+                            <div class="card-header bg-light border-0">
+                                <!-- Reduced card header size from h6 to small -->
+                                <small class="mb-0 text-success fw-semibold">
+                                    <i class="bi bi-envelope me-2"></i>Información de Contacto
+                                </small>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">
+                                            <i class="bi bi-envelope me-1"></i>Email *
+                                        </label>
+                                        <input type="email" class="form-control form-control-lg border-2" id="userEmail" required>
+                                        <div class="form-text">Se detectará automáticamente si es email DUOC UC</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">
+                                            <i class="bi bi-telephone me-1"></i>Teléfono *
+                                        </label>
+                                        <input type="tel" class="form-control form-control-lg border-2" id="userPhone" required>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-semibold">
+                                            <i class="bi bi-card-text me-1"></i>RUT *
+                                        </label>
+                                        <input type="text" class="form-control form-control-lg border-2" id="userRut" required 
+                                               placeholder="12.345.678-9">
+                                        <div class="form-text">Formato: 12.345.678-9 (se validará automáticamente)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Sección de gamificación modernizada -->
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-header bg-light border-0">
+                                <!-- Reduced card header size from h6 to small -->
+                                <small class="mb-0 text-warning fw-semibold">
+                                    <i class="bi bi-trophy me-2"></i>Gamificación
+                                </small>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">
+                                            <i class="bi bi-star me-1"></i>Puntos LevelUp
+                                        </label>
+                                        <input type="number" class="form-control form-control-lg border-2" id="userPoints" min="0" value="0">
+                                        <div class="form-text">Puntos acumulados en la plataforma</div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-semibold">
+                                            <i class="bi bi-award me-1"></i>Nivel
+                                        </label>
+                                        <input type="number" class="form-control form-control-lg border-2" id="userLevel" min="1" value="1">
+                                        <div class="form-text">Nivel actual del usuario</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0 bg-light p-4">
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-2"></i>Cancelar
+                    </button>
+                    <button type="button" class="btn btn-primary btn-lg px-4" id="saveUserBtn">
+                        <i class="bi bi-check-circle me-2"></i>Guardar Usuario
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de perfil rediseñado más compacto y organizado -->
+    <div class="modal fade" id="profileModal" tabindex="-1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title d-flex align-items-center">
+                        <i class="bi bi-person-circle me-2"></i>Perfil Completo de Usuario
+                    </h6>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- Header del perfil -->
+                    <!-- Corrigiendo contraste del texto del nombre y email para mejor legibilidad -->
+                    <div class="d-flex align-items-center mb-4 p-4 bg-light rounded-3">
+                        <div class="avatar-lg bg-primary bg-opacity-15 rounded-circle d-flex align-items-center justify-content-center me-4" style="width: 80px; height: 80px;">
+                            <i class="bi bi-person fs-1 text-primary"></i>
+                        </div>
+                        <div class="flex-grow-1">
+                            <!-- Cambiando color del nombre a texto oscuro para mejor contraste -->
+                            <h5 class="mb-2 text-dark fw-bold" id="profileName">Nombre Usuario</h5>
+                            <!-- Cambiando color del email a gris oscuro para mejor legibilidad -->
+                            <p class="text-secondary mb-2 fw-medium" id="profileEmail">email@ejemplo.com</p>
+                            <div class="d-flex gap-2">
+                                <span class="badge bg-primary" id="profileUserType">Usuario Normal</span>
+                                <span class="badge bg-warning" id="profileLevel">Nivel 1</span>
+                                <span class="badge bg-success" id="profileStatus">Activo</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Agregando tabs para organizar mejor la información -->
+                    <ul class="nav nav-tabs mb-4" id="profileTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="personal-tab" data-bs-toggle="tab" data-bs-target="#personal" type="button" role="tab">
+                                <i class="bi bi-person me-1"></i>Información Personal
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="stats-tab" data-bs-toggle="tab" data-bs-target="#stats" type="button" role="tab">
+                                <i class="bi bi-graph-up me-1"></i>Estadísticas
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="referrals-tab" data-bs-toggle="tab" data-bs-target="#referrals" type="button" role="tab">
+                                <i class="bi bi-people me-1"></i>Referidos
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab">
+                                <i class="bi bi-shield-lock me-1"></i>Seguridad
+                            </button>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="profileTabContent">
+                        <!-- Tab de Información Personal -->
+                        <div class="tab-pane fade show active" id="personal" role="tabpanel">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="card border-primary border-1 h-100 bg-light">
+                                        <div class="card-header border-0 bg-light">
+                                            <!-- Reduced card title size from h6 to small -->
+                                            <small class="card-title text-primary mb-3 fw-semibold d-block">
+                                                <i class="bi bi-person me-2"></i>Datos Básicos
+                                            </small>
+                                        </div>
+                                        <div class="card-body p-4">
+                                            <div class="row g-3">
+                                                <div class="col-12">
+                                                    <label class="text-muted small">RUT</label>
+                                                    <!-- Mejorando contraste del texto de datos -->
+                                                    <p class="fw-semibold mb-2 text-dark" id="profileRut">-</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="text-muted small">Fecha de Nacimiento</label>
+                                                    <p class="mb-2 text-dark" id="profileBirthDate">-</p>
+                                                </div>
+                                                <div class="col-6">
+                                                    <label class="text-muted small">Género</label>
+                                                    <p class="mb-2 text-dark" id="profileGender">-</p>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label class="text-muted small">Teléfono</label>
+                                                    <p class="mb-0 text-dark" id="profilePhone">-</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card border-success border-1 h-100 bg-light">
+                                        <div class="card-header border-0 bg-light">
+                                            <!-- Reduced card title size from h6 to small -->
+                                            <small class="card-title text-success mb-3 fw-semibold d-block">
+                                                <i class="bi bi-calendar me-2"></i>Información de Registro
+                                            </small>
+                                        </div>
+                                        <div class="card-body p-4">
+                                            <div class="row g-3">
+                                                <div class="col-12">
+                                                    <label class="text-muted small">Fecha de Registro</label>
+                                                    <!-- Mejorando contraste del texto de información de registro -->
+                                                    <p class="mb-2 text-dark" id="profileRegistrationDate">-</p>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label class="text-muted small">ID de Usuario</label>
+                                                    <p class="mb-2 font-monospace text-dark" id="profileUserId">-</p>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label class="text-muted small">Código de Referido</label>
+                                                    <p class="mb-0 fw-bold text-primary" id="profileReferralCode">-</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab de Estadísticas -->
+                        <div class="tab-pane fade" id="stats" role="tabpanel">
+                            <div class="row g-4">
+                                <div class="col-md-4">
+                                    <!-- Cambiando gradientes a colores más suaves y profesionales -->
+                                    <div class="card border-0 text-white h-100" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">
+                                        <div class="card-body text-center p-4">
+                                            <i class="bi bi-star display-4 mb-3"></i>
+                                            <h3 class="mb-2" id="profilePoints">0</h3>
+                                            <p class="mb-0">Puntos LevelUp</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <!-- Aplicando gradiente más suave -->
+                                    <div class="card border-0 text-white h-100" style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);">
+                                        <div class="card-body text-center p-4">
+                                            <i class="bi bi-award display-4 mb-3"></i>
+                                            <h3 class="mb-2" id="profileLevelDisplay">1</h3>
+                                            <p class="mb-0">Nivel Actual</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <!-- AplicANDO gradiente azul más suave -->
+                                    <div class="card border-0 text-white h-100" style="background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);">
+                                        <div class="card-body text-center p-4">
+                                            <i class="bi bi-people display-4 mb-3"></i>
+                                            <h3 class="mb-2" id="profileReferralsCount">0</h3>
+                                            <p class="mb-0">Usuarios Referidos</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nuevo tab de Referidos -->
+                        <div class="tab-pane fade" id="referrals" role="tabpanel">
+                            <div class="row g-4">
+                                <div class="col-12">
+                                    <div class="card border-warning border-1 bg-light">
+                                        <div class="card-body p-4">
+                                            <!-- Reduced card title size from h6 to small -->
+                                            <small class="card-title text-warning mb-3 fw-semibold d-block">
+                                                <i class="bi bi-share me-2"></i>Sistema de Referidos
+                                            </small>
+                                            <div class="row g-3">
+                                                <div class="col-md-6">
+                                                    <label class="text-muted small">Código de Referido Personal</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="profileReferralCodeCopy" readonly>
+                                                        <button class="btn btn-outline-primary" type="button" onclick="window.adminUsuarios.copyReferralCode()">
+                                                            <i class="bi bi-clipboard"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="text-muted small">Referido por</label>
+                                                    <p class="mb-0" id="profileReferredBy">Registro directo</p>
+                                                </div>
+                                                <div class="col-12">
+                                                    <label class="text-muted small">Puntos ganados por referidos</label>
+                                                    <p class="mb-0 fw-bold text-success" id="profileReferralPoints">0 puntos</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="card border-secondary border-1 bg-light">
+                                        <div class="card-body p-4">
+                                            <!-- Reduced card title size from h6 to small -->
+                                            <small class="card-title mb-3 fw-semibold d-block">Lista de Usuarios Referidos</small>
+                                            <div id="referralsList">
+                                                <p class="text-muted text-center py-3">Cargando referidos...</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nuevo tab de Seguridad para cambio de contraseña -->
+                        <div class="tab-pane fade" id="security" role="tabpanel">
+                            <div class="row g-4">
+                                <div class="col-md-8 mx-auto">
+                                    <div class="card border-danger border-1 bg-light">
+                                        <div class="card-body p-4">
+                                            <!-- Reduced card title size from h6 to small -->
+                                            <small class="card-title text-danger mb-3 fw-semibold d-block">
+                                                <i class="bi bi-shield-lock me-2"></i>Cambiar Contraseña
+                                            </small>
+                                            <div class="alert alert-info border-0">
+                                                <i class="bi bi-info-circle me-2"></i>
+                                                <strong>Control de Tickets:</strong> Cambia la contraseña del usuario para resolver problemas de acceso.
+                                            </div>
+                                            <form id="changePasswordForm">
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-semibold">Nueva Contraseña</label>
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control" id="newPassword" required minlength="6">
+                                                        <button class="btn btn-outline-secondary" type="button" onclick="window.adminUsuarios.togglePasswordVisibility('newPassword')">
+                                                            <i class="bi bi-eye" id="newPasswordToggle"></i>
+                                                        </button>
+                                                    </div>
+                                                    <div class="form-text">Mínimo 6 caracteres</div>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-semibold">Confirmar Nueva Contraseña</label>
+                                                    <div class="input-group">
+                                                        <input type="password" class="form-control" id="confirmPassword" required minlength="6">
+                                                        <button class="btn btn-outline-secondary" type="button" onclick="window.adminUsuarios.togglePasswordVisibility('confirmPassword')">
+                                                            <i class="bi bi-eye" id="confirmPasswordToggle"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="d-grid">
+                                                    <button type="button" class="btn btn-danger" onclick="window.adminUsuarios.changeUserPassword()">
+                                                        <i class="bi bi-key me-2"></i>Cambiar Contraseña
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cambiando el fondo del footer a blanco más limpio -->
+                <div class="modal-footer border-0 py-3" style="background-color: #f8fafc;">
+                    <button type="button" class="btn btn-outline-primary" onclick="window.adminUsuarios.editUserFromProfile()">
+                        <i class="bi bi-pencil me-1"></i>Editar Usuario
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Agregando modal de eliminación modernizado -->
+    <div class="modal fade" id="deleteModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header bg-gradient-danger text-white border-0">
+                    <!-- Reduced modal title size from h5 to h6 -->
+                    <h6 class="modal-title d-flex align-items-center">
+                        <i class="bi bi-exclamation-triangle me-2"></i>Confirmar Eliminación
+                    </h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4 text-center">
+                    <div class="mb-4">
+                        <i class="bi bi-exclamation-triangle text-warning display-1"></i>
+                    </div>
+                    <!-- Reduced confirmation title size from h5 to h6 -->
+                    <h6 class="mb-3">¿Eliminar usuario?</h6>
+                    <p class="text-muted mb-4">¿Estás seguro de que deseas eliminar este usuario?</p>
+                    <div class="alert alert-warning border-0 rounded-3">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>Esta acción no se puede deshacer.</strong> Toda la información del usuario será eliminada permanentemente.
+                    </div>
+                </div>
+                <div class="modal-footer border-0 bg-light justify-content-center">
+                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 me-3" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-2"></i>Cancelar
+                    </button>
+                    <button type="button" class="btn btn-danger btn-lg px-4" id="confirmDeleteBtn">
+                        <i class="bi bi-trash me-2"></i>Eliminar Usuario
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/adminUsuarios.js"></script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout - LEVEL-UP GAMER</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="../css/style.css" rel="stylesheet" />
+</head>
+<body class="index-page">
+  <div class="floating-particles">
+    <div class="stars"></div>
+  </div>
+
+  <div class="container py-5">
+    <h2 class="text-center text-white mb-4">Checkout</h2>
+
+    <form id="checkoutForm" novalidate>
+      <div class="form-section mb-4">
+        <h5 class="text-neon mb-3">
+          <i class="bi bi-person-circle"></i> Información Personal
+        </h5>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="firstName" class="form-label text-white">Nombre *</label>
+            <input type="text" class="form-control" id="firstName" required />
+            <div class="invalid-feedback" id="firstNameError"></div>
+          </div>
+          <div class="col-md-6">
+            <label for="lastName" class="form-label text-white">Apellido *</label>
+            <input type="text" class="form-control" id="lastName" required />
+            <div class="invalid-feedback" id="lastNameError"></div>
+          </div>
+          <div class="col-md-6">
+            <label for="rut" class="form-label text-white">RUT *</label>
+            <input type="text" class="form-control" id="rut" placeholder="12.345.678-9" required />
+            <div class="form-text text-white-50">Ingresa tu RUT sin puntos ni guión</div>
+            <div class="invalid-feedback" id="rutError"></div>
+          </div>
+          <div class="col-md-6">
+            <label for="email" class="form-label text-white">Email *</label>
+            <input type="email" class="form-control" id="email" required />
+            <div class="invalid-feedback" id="emailError"></div>
+          </div>
+          <div class="col-md-6">
+            <label for="telefono" class="form-label text-white">Teléfono *</label>
+            <div class="input-group">
+              <span class="input-group-text bg-primary text-white border-primary">+569</span>
+              <input type="tel" class="form-control" id="telefono" maxlength="8" placeholder="12345678" required />
+            </div>
+            <div class="form-text text-white-50">Ingresa los 8 dígitos restantes de tu número móvil</div>
+            <div class="invalid-feedback" id="telefonoError"></div>
+          </div>
+          <div class="col-md-6">
+            <label for="birthDate" class="form-label text-white">Fecha de Nacimiento *</label>
+            <input type="date" class="form-control" id="birthDate" required />
+            <div class="invalid-feedback" id="birthDateError"></div>
+          </div>
+          <div class="col-md-6">
+            <label for="gender" class="form-label text-white">Género *</label>
+            <select class="form-select" id="gender" required>
+              <option value="">Seleccionar género</option>
+              <option value="masculino">Masculino</option>
+              <option value="femenino">Femenino</option>
+              <option value="otro">Otro</option>
+              <option value="prefiero-no-decir">Prefiero no decir</option>
+            </select>
+            <div class="invalid-feedback" id="genderError"></div>
+          </div>
+          <div class="col-md-6">
+            <label for="codigoReferido" class="form-label text-white">Código de Referido (opcional)</label>
+            <input type="text" class="form-control" id="codigoReferido" placeholder="Ej: JU1234" />
+            <div class="form-text text-white-50">Si tienes un código de referido, ingrésalo aquí para obtener beneficios</div>
+            <div class="invalid-feedback" id="codigoReferidoError"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section mb-4">
+        <h5 class="text-neon mb-3">
+          <i class="bi bi-shield-lock"></i> Seguridad de la Cuenta
+        </h5>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label for="password" class="form-label text-white">Contraseña *</label>
+            <input type="password" class="form-control" id="password" minlength="8" required />
+            <div class="form-text text-white-50">Mínimo 8 caracteres</div>
+            <div class="invalid-feedback" id="passwordError"></div>
+          </div>
+          <div class="col-md-6">
+            <label for="confirmPassword" class="form-label text-white">Confirmar Contraseña *</label>
+            <input type="password" class="form-control" id="confirmPassword" required />
+            <div class="invalid-feedback" id="confirmPasswordError"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section mb-4">
+        <h5 class="text-neon mb-3">
+          <i class="bi bi-geo-alt-fill"></i> Direcciones de Entrega
+        </h5>
+        <div id="direccionesContainer">
+          <div class="direccion-item mb-3 p-3 bg-dark rounded">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label text-white">Calle *</label>
+                <input type="text" class="form-control direccion-calle" required />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label text-white">Número</label>
+                <input type="text" class="form-control direccion-numero" placeholder="123" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label text-white">Depto/Casa</label>
+                <input type="text" class="form-control direccion-depto" placeholder="Depto 4B" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-white">Región *</label>
+                <select class="form-select direccion-region" required>
+                  <option value="">Seleccionar región</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label text-white">Comuna *</label>
+                <select class="form-select direccion-comuna" required disabled>
+                  <option value="">Primero selecciona una región</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label text-white">Referencia (opcional)</label>
+                <input type="text" class="form-control direccion-referencia" placeholder="Ej: Casa azul, al lado del supermercado" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-outline-primary" id="agregarDireccion">
+          <i class="bi bi-plus-circle"></i> Agregar otra dirección
+        </button>
+      </div>
+
+      <div class="form-check mb-4">
+        <input type="checkbox" class="form-check-input" id="terms" required />
+        <label class="form-check-label text-white" for="terms">
+          Acepto los <a href="#" class="text-neon text-decoration-none">Términos y Condiciones</a> y la
+          <a href="#" class="text-neon text-decoration-none">Política de Privacidad</a> *
+        </label>
+        <div class="invalid-feedback" id="termsError"></div>
+      </div>
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary btn-lg" id="placeOrder">
+          <i class="bi bi-cart-check"></i> Realizar Pedido
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/checkout.js"></script>
+</body>
+</html>

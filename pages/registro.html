@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cuenta - LEVEL-UP GAMER</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+</head>
+
+<!-- Aplicando la misma clase del body que index.html -->
+<body class="index-page">
+    <!-- Agregando las mismas partículas flotantes del index -->
+    <div class="floating-particles">
+        <div class="stars"></div>
+    </div>
+    
+    <!-- Removiendo estilos personalizados y usando la estructura del index -->
+    <div class="container-fluid py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-5">
+                <div class="text-center mb-4">
+                    <a href="../index.html" class="text-decoration-none">
+                        <h2 class="brand-title text-white"><i class="bi bi-controller"></i> LEVEL-UP GAMER</h2>
+                    </a>
+                    <p class="text-muted">Únete a la comunidad gamer más grande</p>
+                </div>
+                
+                <!-- Usando la clase catalog-card del CSS en lugar de registration-card -->
+                <div class="catalog-card">
+                    <div class="card-body p-4">
+                        <h3 class="text-center mb-4 text-neon">
+                            <i class="bi bi-person-plus-fill"></i> Crear Cuenta
+                        </h3>
+                        
+                        <form id="registrationForm" novalidate>
+                            <!-- Usando form-section con estilos del CSS -->
+                            <div class="form-section">
+                                <h5 class="text-neon mb-3">
+                                    <i class="bi bi-person-circle"></i> Información Personal
+                                </h5>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" class="form-label">Nombre *</label>
+                                        <input type="text" class="form-control" id="firstName" required aria-describedby="firstNameError">
+                                        <div class="invalid-feedback" id="firstNameError"></div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" class="form-label">Apellido *</label>
+                                        <input type="text" class="form-control" id="lastName" required aria-describedby="lastNameError">
+                                        <div class="invalid-feedback" id="lastNameError"></div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="rut" class="form-label">RUT *</label>
+                                        <input type="text" class="form-control" id="rut" placeholder="12.345.678-9" required aria-describedby="rutError">
+                                        <div class="form-text">Ingresa tu RUT sin puntos ni guión</div>
+                                        <div class="invalid-feedback" id="rutError"></div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label">Email *</label>
+                                        <input type="email" class="form-control" id="email" required aria-describedby="emailError">
+                                        <!-- Corrigiendo ID y asegurando que esté oculto inicialmente -->
+                                        <div id="duocBenefit" class="alert alert-success d-flex align-items-center mt-2 d-none" style="background: linear-gradient(45deg, #198754, #20c997); border: none; border-radius: 10px; padding: 10px; font-size: 0.9rem;">
+                                            <i class="bi bi-gift-fill me-2"></i>
+                                            <div>
+                                                <strong>🎉 ¡Beneficio DUOC UC Detectado!</strong><br>
+                                                <small>Tienes derecho a un <strong>20% de descuento de por vida</strong> en todos los productos</small>
+                                            </div>
+                                        </div>
+                                        <div class="invalid-feedback" id="emailError"></div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="telefono" class="form-label">Teléfono *</label>
+                                        <!-- Adding fixed +569 prefix with separate input for remaining 8 digits -->
+                                        <div class="input-group">
+                                            <span class="input-group-text bg-primary text-white border-primary">+569</span>
+                                            <input type="tel" class="form-control" id="telefono" placeholder="12345678" maxlength="8" required aria-describedby="telefonoError">
+                                        </div>
+                                        <div class="form-text">Ingresa los 8 dígitos restantes de tu número móvil</div>
+                                        <div class="invalid-feedback" id="telefonoError"></div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="birthDate" class="form-label">Fecha de Nacimiento *</label>
+                                        <input type="date" class="form-control" id="birthDate" required aria-describedby="birthDateError">
+                                        <div class="invalid-feedback" id="birthDateError"></div>
+                                    </div>
+
+                                    <!-- Agregando campo género para consistencia con adminUsuarios -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="gender" class="form-label">Género *</label>
+                                        <select class="form-control" id="gender" required aria-describedby="genderError">
+                                            <option value="">Seleccionar género</option>
+                                            <option value="masculino">Masculino</option>
+                                            <option value="femenino">Femenino</option>
+                                            <option value="otro">Otro</option>
+                                            <option value="prefiero-no-decir">Prefiero no decir</option>
+                                        </select>
+                                        <div class="invalid-feedback" id="genderError"></div>
+                                    </div>
+
+                                    <!-- Adding referral code field -->
+                                    <div class="col-md-6 mb-3">
+                                        <label for="codigoReferido" class="form-label">Código de Referido (opcional)</label>
+                                        <input type="text" class="form-control" id="codigoReferido" placeholder="Ej: JU1234" aria-describedby="codigoReferidoError">
+                                        <div class="form-text">Si tienes un código de referido, ingrésalo aquí para obtener beneficios</div>
+                                        <div class="invalid-feedback" id="codigoReferidoError"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="section-divider"></div>
+                            
+                            <div class="form-section">
+                                <h5 class="text-neon mb-3">
+                                    <i class="bi bi-shield-lock"></i> Seguridad de la Cuenta
+                                </h5>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="password" class="form-label">Contraseña *</label>
+                                        <input type="password" class="form-control" id="password" required minlength="8" aria-describedby="passwordError">
+                                        <div class="form-text">Mínimo 8 caracteres</div>
+                                        <div class="invalid-feedback" id="passwordError"></div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                        <label for="confirmPassword" class="form-label">Confirmar Contraseña *</label>
+                                        <input type="password" class="form-control" id="confirmPassword" required aria-describedby="confirmPasswordError">
+                                        <div class="invalid-feedback" id="confirmPasswordError"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="section-divider"></div>
+                            
+                            <div class="form-section">
+                                <h5 class="text-neon mb-3">
+                                    <i class="bi bi-geo-alt-fill"></i> Direcciones de Entrega
+                                </h5>
+                                
+                                <div id="direccionesContainer">
+                                    <div class="direccion-item">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Calle *</label>
+                                                <input type="text" class="form-control direccion-calle" required>
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label class="form-label">Número</label>
+                                                <input type="text" class="form-control direccion-numero" placeholder="123">
+                                            </div>
+                                            <div class="col-md-3 mb-3">
+                                                <label class="form-label">Depto/Casa</label>
+                                                <input type="text" class="form-control direccion-depto" placeholder="Depto 4B">
+                                            </div>
+                                            <!-- Replacing manual comuna/ciudad with region/comuna selects -->
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Región *</label>
+                                                <select class="form-control direccion-region" required>
+                                                    <option value="">Seleccionar región</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="form-label">Comuna *</label>
+                                                <select class="form-control direccion-comuna" required disabled>
+                                                    <option value="">Primero selecciona una región</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <label class="form-label">Referencia (opcional)</label>
+                                                <input type="text" class="form-control direccion-referencia" placeholder="Ej: Casa azul, al lado del supermercado">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <button type="button" class="btn btn-outline-primary" id="agregarDireccion">
+                                    <i class="bi bi-plus-circle"></i> Agregar otra dirección
+                                </button>
+                            </div>
+                            
+                            <div class="section-divider"></div>
+                            
+                            <div class="form-check mb-4">
+                                <input type="checkbox" class="form-check-input" id="terms" required>
+                                <label class="form-check-label" for="terms">
+                                    Acepto los <a href="#" class="text-neon text-decoration-none">Términos y Condiciones</a> y la 
+                                    <a href="#" class="text-neon text-decoration-none">Política de Privacidad</a> *
+                                </label>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-register btn-lg" id="registerBtn">
+                                    <i class="bi bi-person-plus"></i> Crear Mi Cuenta
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <p class="mb-0">¿Ya tienes cuenta? 
+                        <a href="login.html" class="text-decoration-none fw-bold text-neon">
+                            Inicia Sesión Aquí
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal mejorado con mejor diseño -->
+    <div class="modal fade" id="messageModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-light border-0 shadow-lg">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="messageModalTitle">Información</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="messageModalBody"></div>
+                <div class="modal-footer border-secondary">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/usuario.js"></script>
+    <script src="../js/main.js"></script>
+    
+    <script>
+        const regionesComunas = {
+            "Arica y Parinacota": ["Arica", "Camarones", "Putre", "General Lagos"],
+            "Tarapacá": ["Iquique", "Alto Hospicio", "Pozo Almonte", "Camiña", "Colchane", "Huara", "Pica"],
+            "Antofagasta": ["Antofagasta", "Mejillones", "Sierra Gorda", "Taltal", "Calama", "Ollagüe", "San Pedro de Atacama", "Tocopilla", "María Elena"],
+            "Atacama": ["Copiapó", "Caldera", "Tierra Amarilla", "Chañaral", "Diego de Almagro", "Vallenar", "Alto del Carmen", "Freirina", "Huasco"],
+            "Coquimbo": ["La Serena", "Coquimbo", "Andacollo", "La Higuera", "Paiguano", "Vicuña", "Illapel", "Canela", "Los Vilos", "Salamanca", "Ovalle", "Combarbalá", "Monte Patria", "Punitaqui", "Río Hurtado"],
+            "Valparaíso": ["Valparaíso", "Casablanca", "Concón", "Juan Fernández", "Puchuncaví", "Quintero", "Viña del Mar", "Isla de Pascua", "Los Andes", "Calle Larga", "Rinconada", "San Esteban", "La Ligua", "Cabildo", "Papudo", "Petorca", "Zapallar", "Quillota", "Calera", "Hijuelas", "La Cruz", "Nogales", "San Antonio", "Algarrobo", "Cartagena", "El Quisco", "El Tabo", "Santo Domingo", "San Felipe", "Catemu", "Llaillay", "Panquehue", "Putaendo", "Santa María", "Limache", "Olmué", "Villa Alemana"],
+            "Metropolitana de Santiago": ["Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta de Tilcoco", "Rengo", "Requínoa", "San Vicente", "Pichilemu", "La Estrella", "Litueche", "Marchihue", "Navidad", "Paredones", "San Fernando", "Chépica", "Chimbarongo", "Lolol", "Nancagua", "Palmilla", "Peralillo", "Placilla", "Pumanque", "Santa Cruz"],
+            "Libertador General Bernardo O'Higgins": ["Rancagua", "Codegua", "Coinco", "Coltauco", "Doñihue", "Graneros", "Las Cabras", "Machalí", "Malloa", "Mostazal", "Olivar", "Peumo", "Pichidegua", "Quinta de Tilcoco", "Rengo", "Requínoa", "San Vicente", "Pichilemu", "La Estrella", "Litueche", "Marchihue", "Navidad", "Paredones", "San Fernando", "Chépica", "Chimbarongo", "Lolol", "Nancagua", "Palmilla", "Peralillo", "Placilla", "Pumanque", "Santa Cruz"],
+            "Maule": ["Talca", "Constitución", "Curepto", "Empedrado", "Maule", "Pelarco", "Pencahue", "Río Claro", "San Clemente", "San Rafael", "Cauquenes", "Chanco", "Pelluhue", "Curicó", "Hualañé", "Licantén", "Molina", "Rauco", "Romeral", "Sagrada Familia", "Teno", "Vichuquén", "Linares", "Colbún", "Longaví", "Parral", "Retiro", "San Javier", "Villa Alegre", "Yerbas Buenas"],
+            "Ñuble": ["Chillán", "Bulnes", "Cobquecura", "Coelemu", "Coihueco", "Chillán Viejo", "El Carmen", "Ninhue", "Ñiquén", "Pemuco", "Pinto", "Portezuelo", "Quillón", "Quirihue", "Ránquil", "San Carlos", "San Fabián", "San Ignacio", "San Nicolás", "Treguaco", "Yungay"],
+            "Biobío": ["Concepción", "Coronel", "Chiguayante", "Florida", "Hualqui", "Lota", "Penco", "San Pedro de la Paz", "Santa Juana", "Talcahuano", "Tomé", "Hualpén", "Lebu", "Arauco", "Cañete", "Contulmo", "Curanilahue", "Los Álamos", "Tirúa", "Los Ángeles", "Antuco", "Cabrero", "Laja", "Mulchén", "Nacimiento", "Negrete", "Quilaco", "Quilleco", "San Rosendo", "Santa Bárbara", "Tucapel", "Yumbel", "Alto Biobío"],
+            "Araucanía": ["Temuco", "Carahue", "Cunco", "Curarrehue", "Freire", "Galvarino", "Gorbea", "Lautaro", "Loncoche", "Melipeuco", "Nueva Imperial", "Padre Las Casas", "Perquenco", "Pitrufquén", "Pucón", "Saavedra", "Teodoro Schmidt", "Toltén", "Vilcún", "Villarrica", "Cholchol", "Angol", "Collipulli", "Curacautín", "Ercilla", "Lonquimay", "Los Sauces", "Lumaco", "Purén", "Renaico", "Traiguén", "Victoria"],
+            "Los Ríos": ["Valdivia", "Corral", "Lanco", "Los Lagos", "Máfil", "Mariquina", "Paillaco", "Panguipulli", "La Unión", "Futrono", "Lago Ranco", "Río Bueno"],
+            "Los Lagos": ["Puerto Montt", "Calbuco", "Cochamó", "Fresia", "Frutillar", "Los Muermos", "Llanquihue", "Maullín", "Puerto Varas", "Castro", "Ancud", "Chonchi", "Curaco de Vélez", "Dalcahue", "Puqueldón", "Queilén", "Quellón", "Quemchi", "Quinchao", "Osorno", "Puerto Octay", "Purranque", "Puyehue", "Río Negro", "San Juan de la Costa", "San Pablo", "Chaitén", "Futaleufú", "Hualaihué", "Palena"],
+            "Aysén del General Carlos Ibáñez del Campo": ["Coyhaique", "Lago Verde", "Aysén", "Cisnes", "Guaitecas", "Cochrane", "O'Higgins", "Tortel", "Chile Chico", "Río Ibáñez"],
+            "Magallanes y de la Antártica Chilena": ["Punta Arenas", "Laguna Blanca", "Río Verde", "San Gregorio", "Cabo de Hornos", "Antártica", "Porvenir", "Primavera", "Timaukel", "Natales", "Torres del Paine"]
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            const rutInput = document.getElementById('rut');
+            const emailInput = document.getElementById('email');
+            const duocBenefit = document.getElementById('duocBenefit');
+            const agregarDireccionBtn = document.getElementById('agregarDireccion');
+            const firstNameInput = document.getElementById('firstName');
+            const lastNameInput = document.getElementById('lastName');
+            const telefonoInput = document.getElementById('telefono');
+            const genderInput = document.getElementById('gender');
+            let contadorDirecciones = 1;
+            
+            function initializeRegions() {
+                document.querySelectorAll('.direccion-region').forEach(regionSelect => {
+                    regionSelect.innerHTML = '<option value="">Seleccionar región</option>';
+                    Object.keys(regionesComunas).forEach(region => {
+                        const option = document.createElement('option');
+                        option.value = region;
+                        option.textContent = region;
+                        regionSelect.appendChild(option);
+                    });
+                });
+            }
+
+            function handleRegionChange(regionSelect) {
+                const comunaSelect = regionSelect.closest('.direccion-item').querySelector('.direccion-comuna');
+                const selectedRegion = regionSelect.value;
+                
+                if (selectedRegion && regionesComunas[selectedRegion]) {
+                    comunaSelect.disabled = false;
+                    comunaSelect.innerHTML = '<option value="">Seleccionar comuna</option>';
+                    regionesComunas[selectedRegion].forEach(comuna => {
+                        const option = document.createElement('option');
+                        option.value = comuna;
+                        option.textContent = comuna;
+                        comunaSelect.appendChild(option);
+                    });
+                } else {
+                    comunaSelect.disabled = true;
+                    comunaSelect.innerHTML = '<option value="">Primero selecciona una región</option>';
+                }
+            }
+
+            document.addEventListener('change', function(e) {
+                if (e.target.classList.contains('direccion-region')) {
+                    handleRegionChange(e.target);
+                }
+            });
+
+            initializeRegions();
+
+            function formatName(input) {
+                input.addEventListener('blur', function() {
+                    const value = this.value.trim();
+                    if (value) {
+                        // Capitalize first letter of each word and make rest lowercase
+                        const formatted = value.toLowerCase().split(' ').map(word => 
+                            word.charAt(0).toUpperCase() + word.slice(1)
+                        ).join(' ');
+                        this.value = formatted;
+                        console.log('[v0] Nombre formateado:', formatted);
+                    }
+                });
+            }
+
+            function formatPhoneNumber(input) {
+                input.addEventListener('input', function() {
+                    let value = this.value.replace(/\D/g, '');
+                    
+                    // Limit to 8 digits
+                    if (value.length > 8) {
+                        value = value.substring(0, 8);
+                    }
+                    
+                    this.value = value;
+                    console.log('[v0] Teléfono formateado:', value);
+                });
+
+                input.addEventListener('blur', function() {
+                    const value = this.value.trim();
+                    if (value && value.length === 8) {
+                        console.log('[v0] Teléfono válido:', '+569' + value);
+                    } else if (value) {
+                        console.log('[v0] Teléfono inválido - debe tener exactamente 8 dígitos');
+                    }
+                });
+            }
+
+            formatName(firstNameInput);
+            formatName(lastNameInput);
+            formatPhoneNumber(telefonoInput);
+            
+            emailInput.addEventListener('input', function() {
+                const email = this.value.trim();
+                console.log("[v0] Email input:", email);
+                
+                if (!email) {
+                    console.log("[v0] Email vacío, ocultando mensaje");
+                    duocBenefit.classList.add('d-none');
+                    duocBenefit.classList.remove('d-block');
+                    return;
+                }
+                
+                if (email.includes('@')) {
+                    const dominio = email.split('@')[1];
+                    console.log("[v0] Dominio extraído:", dominio);
+                    
+                    if (dominio && dominio.toLowerCase().includes('duoc')) {
+                        console.log("[v0] DUOC detectado en dominio, mostrando mensaje");
+                        duocBenefit.classList.remove('d-none');
+                        duocBenefit.classList.add('d-block');
+                        duocBenefit.classList.add('animate__animated', 'animate__fadeInDown');
+                    } else {
+                        console.log("[v0] DUOC no detectado, ocultando mensaje");
+                        duocBenefit.classList.add('d-none');
+                        duocBenefit.classList.remove('d-block');
+                        duocBenefit.classList.remove('animate__animated', 'animate__fadeInDown');
+                    }
+                } else {
+                    console.log("[v0] No hay @ en el email, ocultando mensaje");
+                    duocBenefit.classList.add('d-none');
+                    duocBenefit.classList.remove('d-block');
+                }
+            });
+            
+            rutInput.addEventListener('input', function() {
+                let valor = this.value.replace(/\./g, '').replace(/-/g, '');
+                if (valor.length > 1) {
+                    this.value = usuarioManager.formatearRUT(valor);
+                }
+            });
+            
+            agregarDireccionBtn.addEventListener('click', function() {
+                contadorDirecciones++;
+                const nuevaDireccion = document.querySelector('.direccion-item').cloneNode(true);
+                
+                nuevaDireccion.querySelectorAll('input, select').forEach(input => {
+                    input.value = '';
+                    if (input.classList.contains('direccion-comuna')) {
+                        input.disabled = true;
+                        input.innerHTML = '<option value="">Primero selecciona una región</option>';
+                    }
+                });
+                
+                const regionSelect = nuevaDireccion.querySelector('.direccion-region');
+                regionSelect.innerHTML = '<option value="">Seleccionar región</option>';
+                Object.keys(regionesComunas).forEach(region => {
+                    const option = document.createElement('option');
+                    option.value = region;
+                    option.textContent = region;
+                    regionSelect.appendChild(option);
+                });
+                
+                const eliminarBtn = document.createElement('button');
+                eliminarBtn.type = 'button';
+                eliminarBtn.className = 'btn btn-outline-danger btn-sm mt-1';
+                eliminarBtn.innerHTML = '<i class="bi bi-trash"></i> Eliminar';
+                eliminarBtn.addEventListener('click', function() {
+                    nuevaDireccion.remove();
+                });
+                
+                nuevaDireccion.appendChild(eliminarBtn);
+                document.getElementById('direccionesContainer').appendChild(nuevaDireccion);
+            });
+            
+            // Function to validate all form fields
+            function validateForm() {
+                let isValid = true;
+
+                // Clear previous errors
+                document.querySelectorAll('.invalid-feedback').forEach(el => {
+                    el.style.display = 'none';
+                });
+                document.querySelectorAll('.form-control, .form-select').forEach(el => {
+                    el.classList.remove('is-invalid');
+                });
+
+                // Validate firstName
+                const firstName = document.getElementById('firstName').value.trim();
+                if (!firstName || firstName.length < 2) {
+                    showFieldError('firstName', 'El nombre debe tener al menos 2 caracteres');
+                    isValid = false;
+                }
+
+                // Validate lastName
+                const lastName = document.getElementById('lastName').value.trim();
+                if (!lastName || lastName.length < 2) {
+                    showFieldError('lastName', 'El apellido debe tener al menos 2 caracteres');
+                    isValid = false;
+                }
+
+                // Validate RUT
+                const rut = document.getElementById('rut').value.trim();
+                if (!rut || !usuarioManager.validarRUT(rut)) {
+                    showFieldError('rut', 'El RUT ingresado no es válido');
+                    isValid = false;
+                } else if (usuarioManager.rutExiste(rut)) {
+                    showFieldError('rut', 'Este RUT ya está registrado');
+                    isValid = false;
+                }
+
+                // Validate email
+                const email = document.getElementById('email').value.trim();
+                if (!email || !usuarioManager.validarEmail(email)) {
+                    showFieldError('email', 'El email ingresado no es válido');
+                    isValid = false;
+                } else if (usuarioManager.emailExiste(email)) {
+                    showFieldError('email', 'Este email ya está registrado');
+                    isValid = false;
+                }
+
+                // Validate telefono
+                const telefono = document.getElementById('telefono').value.trim();
+                if (!telefono || !usuarioManager.validarTelefono('+569' + telefono)) {
+                    showFieldError('telefono', 'El teléfono debe ser un número chileno válido (8 dígitos)');
+                    isValid = false;
+                }
+
+                // Validate birthDate
+                const birthDate = document.getElementById('birthDate').value;
+                if (!birthDate || !usuarioManager.validarEdad(birthDate)) {
+                    showFieldError('birthDate', 'Debes ser mayor de 18 años para registrarte');
+                    isValid = false;
+                }
+
+                // Validate gender
+                const gender = document.getElementById('gender').value;
+                if (!gender) {
+                    showFieldError('gender', 'Debes seleccionar un género');
+                    isValid = false;
+                }
+
+                // Validate password
+                const password = document.getElementById('password').value;
+                if (!password || password.length < 8) {
+                    showFieldError('password', 'La contraseña debe tener al menos 8 caracteres');
+                    isValid = false;
+                }
+
+                // Validate confirmPassword
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                if (!confirmPassword) {
+                    showFieldError('confirmPassword', 'Debes confirmar tu contraseña');
+                    isValid = false;
+                } else if (confirmPassword !== password) {
+                    showFieldError('confirmPassword', 'Las contraseñas no coinciden');
+                    isValid = false;
+                }
+
+                // Validate codigoReferido (optional)
+                const codigoReferido = document.getElementById('codigoReferido').value.trim();
+                if (codigoReferido && !usuarioManager.buscarPorCodigoReferido(codigoReferido)) {
+                    showFieldError('codigoReferido', 'El código de referido no es válido');
+                    isValid = false;
+                }
+
+                // Validate at least one address
+                const direccionesValidas = [];
+                document.querySelectorAll('.direccion-item').forEach(item => {
+                    const calle = item.querySelector('.direccion-calle').value.trim();
+                    const region = item.querySelector('.direccion-region').value.trim();
+                    const comuna = item.querySelector('.direccion-comuna').value.trim();
+
+                    if (calle && region && comuna) {
+                        direccionesValidas.push({ calle, region, comuna });
+                    }
+                });
+
+                if (direccionesValidas.length === 0) {
+                    // Show error for the first address fields
+                    const firstAddress = document.querySelector('.direccion-item');
+                    if (firstAddress) {
+                        const calleInput = firstAddress.querySelector('.direccion-calle');
+                        const regionSelect = firstAddress.querySelector('.direccion-region');
+                        const comunaSelect = firstAddress.querySelector('.direccion-comuna');
+
+                        if (!calleInput.value.trim()) {
+                            calleInput.classList.add('is-invalid');
+                        }
+                        if (!regionSelect.value) {
+                            regionSelect.classList.add('is-invalid');
+                        }
+                        if (!comunaSelect.value) {
+                            comunaSelect.classList.add('is-invalid');
+                        }
+                    }
+                    mostrarModal('Error de Validación', 'Debes agregar al menos una dirección completa (calle, comuna, región)', 'error');
+                    isValid = false;
+                }
+
+                // Validate terms acceptance
+                const terms = document.getElementById('terms').checked;
+                if (!terms) {
+                    mostrarModal('Error de Validación', 'Debes aceptar los Términos y Condiciones', 'error');
+                    isValid = false;
+                }
+
+                return isValid;
+            }
+
+            // Helper function to show field errors
+            function showFieldError(fieldId, message) {
+                const field = document.getElementById(fieldId);
+                const errorElement = document.getElementById(fieldId + 'Error');
+
+                if (field) {
+                    field.classList.add('is-invalid');
+                }
+                if (errorElement) {
+                    errorElement.textContent = message;
+                    errorElement.style.display = 'block';
+                }
+            }
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Validate all fields before submission
+                if (!validateForm()) {
+                    return; // Stop submission if validation fails
+                }
+
+                const datosUsuario = {};
+
+                const firstName = document.getElementById('firstName').value.trim();
+                const lastName = document.getElementById('lastName').value.trim();
+
+                if (firstName) datosUsuario.firstName = firstName;
+                if (lastName) datosUsuario.lastName = lastName;
+                if (firstName && lastName) datosUsuario.nombreCompleto = `${firstName} ${lastName}`;
+
+                const rut = document.getElementById('rut').value.trim();
+                if (rut) datosUsuario.rut = rut;
+
+                const email = document.getElementById('email').value.trim();
+                if (email) datosUsuario.email = email;
+
+                const telefono = document.getElementById('telefono').value.trim();
+                if (telefono) {
+                    if (telefono.length === 8 && /^\d{8}$/.test(telefono)) {
+                        datosUsuario.telefono = `+569${telefono}`;
+                        console.log('[v0] Teléfono guardado como:', datosUsuario.telefono);
+                    } else {
+                        datosUsuario.telefono = telefono; // Let validation handle the error
+                    }
+                }
+
+                const fechaNacimiento = document.getElementById('birthDate').value;
+                if (fechaNacimiento) datosUsuario.fechaNacimiento = fechaNacimiento;
+
+                const gender = document.getElementById('gender').value;
+                if (gender) {
+                    datosUsuario.genero = gender;
+                    console.log('Género seleccionado:', gender);
+                }
+
+                const password = document.getElementById('password').value;
+                if (password) datosUsuario.password = password;
+
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                if (confirmPassword) datosUsuario.confirmPassword = confirmPassword;
+
+                const codigoReferido = document.getElementById('codigoReferido').value.trim();
+                console.log("[v0] Campo código referido encontrado:", document.getElementById('codigoReferido'));
+                console.log("[v0] Valor raw del campo:", document.getElementById('codigoReferido').value);
+                console.log("[v0] Valor después de trim:", codigoReferido);
+                console.log("[v0] ¿Está vacío?:", codigoReferido === '');
+                console.log("[v0] Longitud:", codigoReferido.length);
+
+                datosUsuario.codigoReferido = codigoReferido || null;
+                console.log("[v0] Valor final asignado a datosUsuario.codigoReferido:", datosUsuario.codigoReferido);
+
+                datosUsuario.direcciones = [];
+                document.querySelectorAll('.direccion-item').forEach(item => {
+                    const calle = item.querySelector('.direccion-calle').value.trim();
+                    const numero = item.querySelector('.direccion-numero') ? item.querySelector('.direccion-numero').value.trim() : '';
+                    const depto = item.querySelector('.direccion-depto') ? item.querySelector('.direccion-depto').value.trim() : '';
+                    const region = item.querySelector('.direccion-region').value.trim();
+                    const comuna = item.querySelector('.direccion-comuna').value.trim();
+                    const referencia = item.querySelector('.direccion-referencia').value.trim();
+
+                    if (calle && region && comuna) {
+                        const direccion = {
+                            calle: calle,
+                            numero: numero,
+                            comuna,
+                            ciudad: comuna, // Use comuna as ciudad for compatibility
+                            region
+                        };
+                        if (depto) direccion.departamento = depto;
+                        if (referencia) direccion.referencia = referencia;
+                        datosUsuario.direcciones.push(direccion);
+                    }
+                });
+
+                console.log("Datos a enviar:", datosUsuario);
+
+                const resultado = usuarioManager.registrarUsuario(datosUsuario);
+
+                console.log("=== RESULTADO DEL REGISTRO ===");
+                console.log("Resultado completo:", resultado);
+                console.log("¿Registro exitoso?:", resultado.exito);
+                console.log("===============================");
+
+                if (resultado.exito) {
+                    mostrarModal('¡Registro Exitoso!', '¡Tu cuenta ha sido creada correctamente! Serás redirigido al login en 10 segundos.', 'success');
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 10000);
+                } else {
+                    mostrarModal('Error en el Registro', resultado.errores.join('<br>'), 'error');
+                }
+            });
+            
+            function mostrarModal(titulo, mensaje, tipo) {
+                document.getElementById('messageModalTitle').textContent = titulo;
+                document.getElementById('messageModalBody').innerHTML = mensaje;
+                
+                const modal = document.getElementById('messageModal');
+                const modalHeader = modal.querySelector('.modal-header');
+                
+                if (tipo === 'success') {
+                    modalHeader.className = 'modal-header border-success bg-success bg-opacity-10';
+                } else if (tipo === 'error') {
+                    modalHeader.className = 'modal-header border-danger bg-danger bg-opacity-10';
+                } else {
+                    modalHeader.className = 'modal-header border-secondary';
+                }
+                
+                const bootstrapModal = new bootstrap.Modal(modal);
+                bootstrapModal.show();
+            }
+        });
+    </script>
+</body>
+</html>

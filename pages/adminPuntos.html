@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Puntos - LevelUp Gaming</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/admin.css" rel="stylesheet">
+</head>
+<body class="admin-body">
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <!-- Botón hamburguesa para móviles -->
+                    <button class="btn btn-outline-light d-md-none me-3" id="toggleSidebar" aria-label="Alternar sidebar">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div>
+                        <h4 class="mb-0 text-white d-flex align-items-center gap-2">
+                            <i class="bi bi-stars text-warning"></i>
+                            Gestión de Puntos
+                        </h4>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item"><a href="admin.html">Dashboard</a></li>
+                                <li class="breadcrumb-item active">Puntos</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light position-relative" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-bell"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="notificationCount">
+                                0
+                            </span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end notification-dropdown">
+                            <li><h6 class="dropdown-header">Notificaciones</h6></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-star text-warning"></i> Nuevos puntos otorgados</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-center" href="#">Ver todas</a></li>
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-light d-flex align-items-center gap-2" type="button" data-bs-toggle="dropdown">
+                            <i class="bi bi-person-circle"></i>
+                            <span id="adminName">Administrador</span>
+                            <i class="bi bi-chevron-down"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Mi Perfil</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Configuración</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="../index.html"><i class="bi bi-house"></i> Volver al sitio</a></li>
+                            <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right"></i> Cerrar Sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar" id="adminSidebar">
+            <div class="sidebar-brand">
+                <i class="bi bi-controller"></i>
+                <span>LevelUp Admin</span>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <span class="nav-section-title">Principal</span>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="admin.html">
+                                <i class="bi bi-speedometer2"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <span class="nav-section-title">Gestión</span>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminProductos.html">
+                                <i class="bi bi-box-seam"></i>
+                                <span>Productos</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminUsuarios.html">
+                                <i class="bi bi-people"></i>
+                                <span>Usuarios</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="adminPuntos.html">
+                                <i class="bi bi-star"></i>
+                                <span>Puntos</span>
+                                <div class="nav-indicator"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="adminPedidos.html">
+                                <i class="bi bi-cart-check"></i>
+                                <span>Pedidos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Added sección de contenido con Eventos -->
+                <div class="nav-section">
+                    <span class="nav-section-title">Contenido</span>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../blogNoticias.html">
+                                <i class="bi bi-newspaper"></i>
+                                <span>Blog</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../blogNoticias.html">
+                                <i class="bi bi-calendar-event"></i>
+                                <span>Eventos</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main content -->
+        <main class="admin-main">
+            <!-- Simplified section header to match adminProductos style -->
+            <section class="admin-section active">
+                <div class="section-header">
+                    <div>
+                        <h3><i class="bi bi-star"></i> Gestión de Puntos</h3>
+                        <p class="text-muted">Configura recompensas y gestiona el programa de fidelización - Última actualización: <span id="lastUpdate">--</span></p>
+                    </div>
+                    <div class="section-actions">
+                        <button class="btn btn-outline-primary btn-sm" id="refreshPointsData">
+                            <i class="bi bi-arrow-clockwise"></i> Actualizar
+                        </button>
+                        <button class="btn btn-primary btn-sm" id="savePointsConfig">
+                            <i class="bi bi-check-lg"></i> Guardar Configuración
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Simplified KPI cards to match adminProductos style -->
+                <div class="row g-4 mb-4">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="kpi-card kpi-primary">
+                            <div class="kpi-icon">
+                                <i class="bi bi-star"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value" id="totalPointsAwarded">125,847</div>
+                                <div class="kpi-label">Puntos Otorgados</div>
+                                <div class="kpi-trend">
+                                    <i class="bi bi-arrow-up"></i>
+                                    <span>Este mes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6">
+                        <div class="kpi-card kpi-success">
+                            <div class="kpi-icon">
+                                <i class="bi bi-people"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value" id="totalReferrals">1,247</div>
+                                <div class="kpi-label">Total Referidos</div>
+                                <div class="kpi-trend">
+                                    <i class="bi bi-check"></i>
+                                    <span>Usuarios activos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6">
+                        <div class="kpi-card kpi-warning">
+                            <div class="kpi-icon">
+                                <i class="bi bi-gem"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value" id="diamondUsers">89</div>
+                                <div class="kpi-label">Usuarios Diamante</div>
+                                <div class="kpi-trend">
+                                    <i class="bi bi-gem"></i>
+                                    <span>Nivel premium</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xl-3 col-md-6">
+                        <div class="kpi-card kpi-info">
+                            <div class="kpi-icon">
+                                <i class="bi bi-graph-up"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <div class="kpi-value" id="avgPointsPerUser">2,847</div>
+                                <div class="kpi-label">Promedio por Usuario</div>
+                                <div class="kpi-trend">
+                                    <i class="bi bi-graph-up"></i>
+                                    <span>Puntos acumulados</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simplified configuration section using dashboard-widget style -->
+                <div class="dashboard-widget" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+                    <div class="widget-header" style="background: rgba(255,255,255,0.1); color: white; padding: 1rem; border-radius: 12px 12px 0 0; backdrop-filter: blur(10px);">
+                        <h6 style="color: white; margin: 0;"><i class="bi bi-sliders"></i> Configuración de Recompensas</h6>
+                        <div class="widget-actions">
+                            <small style="color: rgba(255,255,255,0.8);">Define cuántos puntos otorgar por cada acción</small>
+                        </div>
+                    </div>
+                    <div class="widget-body" style="background: rgba(255,255,255,0.95); padding: 1rem; border-radius: 0 0 12px 12px;">
+                        <form id="pointsConfigForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="registrationPoints" class="form-label">
+                                        <i class="bi bi-person-plus text-primary me-1"></i>
+                                        Puntos por Registro
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="registrationPoints" value="100" min="0">
+                                        <span class="input-group-text">puntos</span>
+                                    </div>
+                                    <div class="form-text">Recompensa por crear una cuenta nueva</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="referralPoints" class="form-label">
+                                        <i class="bi bi-people text-success me-1"></i>
+                                        Puntos por Referido
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="referralPoints" value="500" min="0">
+                                        <span class="input-group-text">puntos</span>
+                                    </div>
+                                    <div class="form-text">Recompensa por invitar nuevos usuarios</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="purchasePoints" class="form-label">
+                                        <i class="bi bi-cart-check text-warning me-1"></i>
+                                        Puntos por Compra
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="purchasePoints" value="10" min="0">
+                                        <span class="input-group-text">por $1000</span>
+                                    </div>
+                                    <div class="form-text">Puntos por cada $1000 pesos gastados</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="reviewPoints" class="form-label">
+                                        <i class="bi bi-star text-info me-1"></i>
+                                        Puntos por Reseña
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="reviewPoints" value="50" min="0">
+                                        <span class="input-group-text">puntos</span>
+                                    </div>
+                                    <div class="form-text">Recompensa por escribir reseñas</div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="birthdayPoints" class="form-label">
+                                        <i class="bi bi-gift text-danger me-1"></i>
+                                        Puntos por Cumpleaños
+                                    </label>
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" id="birthdayPoints" value="200" min="0">
+                                        <span class="input-group-text">puntos</span>
+                                    </div>
+                                    <div class="form-text">Regalo especial de cumpleaños</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Simplified levels section using dashboard-widget style -->
+                <div class="dashboard-widget" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+                    <div class="widget-header" style="background: rgba(255,255,255,0.1); color: white; padding: 1rem; border-radius: 12px 12px 0 0; backdrop-filter: blur(10px);">
+                        <h6 style="color: white; margin: 0;"><i class="bi bi-trophy"></i> Niveles de Usuario</h6>
+                        <div class="widget-actions">
+                            <small style="color: rgba(255,255,255,0.8);">Sistema de progresión</small>
+                        </div>
+                    </div>
+                    <div class="widget-body" style="background: rgba(255,255,255,0.95); padding: 1rem; border-radius: 0 0 12px 12px;">
+                        <div class="level-config">
+                            <div class="level-item">
+                                <div class="level-badge bronze">
+                                    <i class="bi bi-award"></i>
+                                </div>
+                                <div class="level-info">
+                                    <h6>Bronce</h6>
+                                    <div class="level-range">0 - 999 puntos</div>
+                                    <div class="level-benefit">Sin descuento</div>
+                                </div>
+                            </div>
+
+                            <div class="level-item">
+                                <div class="level-badge silver">
+                                    <i class="bi bi-award"></i>
+                                </div>
+                                <div class="level-info">
+                                    <h6>Plata</h6>
+                                    <div class="level-range">1,000 - 2,999 puntos</div>
+                                    <div class="level-benefit">5% descuento</div>
+                                </div>
+                            </div>
+
+                            <div class="level-item">
+                                <div class="level-badge gold">
+                                    <i class="bi bi-award"></i>
+                                </div>
+                                <div class="level-info">
+                                    <h6>Oro</h6>
+                                    <div class="level-range">3,000 - 4,999 puntos</div>
+                                    <div class="level-benefit">10% descuento</div>
+                                </div>
+                            </div>
+
+                            <div class="level-item">
+                                <div class="level-badge diamond">
+                                    <i class="bi bi-gem"></i>
+                                </div>
+                                <div class="level-info">
+                                    <h6>Diamante</h6>
+                                    <div class="level-range">5,000+ puntos</div>
+                                    <div class="level-benefit">15% descuento</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Simplified table using dashboard-widget style -->
+                <div class="dashboard-widget" style="background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);">
+                    <div class="widget-header" style="background: rgba(255,255,255,0.1); color: white; padding: 1rem; border-radius: 12px 12px 0 0; backdrop-filter: blur(10px);">
+                        <h6 style="color: white; margin: 0;"><i class="bi bi-list-stars"></i> Ranking de Usuarios</h6>
+                        <div class="widget-actions d-flex gap-2">
+                            <input type="text" class="form-control form-control-sm" id="searchUsers" 
+                                   placeholder="Buscar usuarios..." style="width: 200px; background: rgba(255,255,255,0.9); border: 1px solid rgba(255,255,255,0.3); color: #333;">
+                        </div>
+                    </div>
+                    <div class="widget-body" style="background: rgba(255,255,255,0.95); padding: 1rem; border-radius: 0 0 12px 12px;">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <!-- Applying same gradient header style as adminPedidos.html -->
+                                <thead style="background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%); color: white;">
+                                    <tr>
+                                        <th class="text-center" style="color: white; font-weight: 600; padding: 12px 8px;">#</th>
+                                        <th style="color: white; font-weight: 600; padding: 12px 8px;">Usuario</th>
+                                        <th style="color: white; font-weight: 600; padding: 12px 8px;">Email</th>
+                                        <th class="text-center" style="color: white; font-weight: 600; padding: 12px 8px;">Puntos</th>
+                                        <th class="text-center" style="color: white; font-weight: 600; padding: 12px 8px;">Referidos</th>
+                                        <th class="text-center" style="color: white; font-weight: 600; padding: 12px 8px;">Nivel</th>
+                                        <th class="text-center" style="color: white; font-weight: 600; padding: 12px 8px;">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="topUsersTable">
+                                    <!-- Top users will be listed here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para Ajustar Puntos -->
+    <div class="modal fade" id="adjustPointsModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ajustar Puntos de Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="adjustPointsForm">
+                        <input type="hidden" id="adjustUserId">
+                        <div class="mb-3">
+                            <label class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="adjustUserName" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Puntos Actuales</label>
+                            <input type="number" class="form-control" id="currentPoints" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pointsAdjustment" class="form-label">Ajuste de Puntos</label>
+                            <input type="number" class="form-control" id="pointsAdjustment" placeholder="Ingrese cantidad (positiva o negativa)">
+                            <div class="form-text">Use números positivos para agregar puntos, negativos para quitar</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="adjustmentReason" class="form-label">Motivo del Ajuste</label>
+                            <textarea class="form-control" id="adjustmentReason" rows="3" placeholder="Describa el motivo del ajuste"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmAdjustPoints">Aplicar Ajuste</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/adminPuntos.js"></script>
+</body>
+</html>
